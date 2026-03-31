@@ -27,7 +27,8 @@ const Contact = () => {
             setStatus({ loading: false, msg: 'Thank you! Your inquiry has been received.', type: 'success' });
             setFormData({ name: '', email: '', phone: '', service: 'Umrah Package', destination: '', travelDate: '', travelers: '1' });
         } catch (error) {
-            setStatus({ loading: false, msg: 'Inquiry received! We will contact you soon.', type: 'success' });
+            console.error('Contact Page Error:', error.response ? error.response.data : error.message);
+            setStatus({ loading: false, msg: 'Something went wrong. Please check your fields.', type: 'error' });
         }
     };
 

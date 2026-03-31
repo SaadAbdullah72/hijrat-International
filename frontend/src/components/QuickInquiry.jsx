@@ -26,7 +26,8 @@ const QuickInquiry = () => {
             setStatus({ loading: false, msg: 'Inquiry received!', type: 'success' });
             setFormData({ name: '', email: '', phone: '', service: 'Umrah Package', destination: '', travelDate: '', travelers: '1' });
         } catch (error) {
-            setStatus({ loading: false, msg: 'Sent!', type: 'success' });
+            console.error('Inquiry Error:', error.response ? error.response.data : error.message);
+            setStatus({ loading: false, msg: 'Error! Please try again.', type: 'error' });
         }
     };
 

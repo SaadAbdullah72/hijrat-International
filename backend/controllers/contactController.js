@@ -16,6 +16,7 @@ exports.createContact = async (req, res) => {
         });
         res.status(201).json({ success: true, data: contact });
     } catch (error) {
+        console.error('Contact Creation Error:', error.message);
         res.status(400).json({ success: false, message: error.message });
     }
 };
