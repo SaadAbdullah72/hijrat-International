@@ -107,58 +107,62 @@ section {
   margin: 0 auto;
 }
 
-/* Master Responsiveness */
+/* Premium Responsive Refinement */
+* { box-sizing: border-box; }
+
 @media (max-width: 1024px) {
     .container { padding: 0 40px; }
-    h1 { font-size: 4rem !important; }
+    h1 { font-size: 3.5rem !important; }
 }
 
 @media (max-width: 768px) {
-    .container { padding: 0 25px; }
-    h1 { font-size: 3rem !important; }
-    h2 { font-size: 2.2rem !important; }
-    p { font-size: 1rem !important; }
+    body { font-size: 14px; } /* Slightly zoom out fonts */
+    .container { padding: 0 20px; }
     
-    .hero { padding: 80px 0 !important; }
-    .hero-content { text-align: center; margin-bottom: 50px; }
-    .hero-content div { justify-content: center; }
+    .hero { padding: 80px 0 !important; min-height: auto !important; }
+    .hero-content { text-align: center; margin-bottom: 40px; }
+    .hero-content h1 { font-size: 2.5rem !important; line-height: 1.2 !important; }
+    .hero-content p { font-size: 1rem !important; margin: 1.5rem auto !important; max-width: 90% !important; }
     
-    .section-title { margin-bottom: 30px !important; }
-    .section-title h2 { font-size: 2rem !important; }
+    .section-title { margin-bottom: 40px !important; }
+    .section-title h2 { font-size: 1.8rem !important; }
+    .section-title p { font-size: 0.9rem !important; }
 
-    /* Fix grids */
+    /* Balanced Grids */
     [style*="display: grid"] {
         grid-template-columns: 1fr !important;
-        gap: 20px !important;
+        gap: 30px !important;
     }
     
-    /* Fix QuickInquiry Form */
     .quick-inquiry-card {
-        max-width: 100% !important;
         padding: 1.5rem !important;
-    }
-    .quick-inquiry-card [style*="display: grid"] {
-        grid-template-columns: 1fr !important;
-        gap: 10px !important;
+        max-width: 100% !important;
     }
     
     .service-card {
-        grid-template-columns: 1fr !important;
-        min-height: auto !important;
+        border-radius: 1.5rem !important;
     }
     .service-card img {
-        height: 250px !important;
+        height: 220px !important;
     }
+    .service-card div[style*="padding: 4rem"] {
+        padding: 2rem !important;
+    }
+    .service-card h3 { font-size: 1.8rem !important; }
+
+    .package-card {
+        margin-bottom: 20px !important;
+    }
+    .package-card img { height: 220px !important; }
+    .package-card div[style*="padding: 3rem"] { padding: 1.5rem !important; }
     
     .btn {
-        width: 100% !important;
-        text-align: center !important;
-        padding: 1rem !important;
+        font-size: 0.9rem !important;
+        padding: 0.8rem 1.5rem !important;
     }
 }
 
 @media (max-width: 480px) {
-    h1 { font-size: 2.2rem !important; }
-    h2 { font-size: 1.8rem !important; }
-    .hero-content span { font-size: 0.7rem !important; padding: 0.4rem 1rem !important; }
+    h1 { font-size: 2rem !important; }
+    .hero { padding: 60px 0 !important; }
 }
