@@ -18,20 +18,35 @@ const Navbar = () => {
   return (
     <>
       <div className="top-bar" style={{ 
-        backgroundColor: 'var(--primary)', 
+        background: 'linear-gradient(90deg, var(--primary), #0f2d6b)',
         color: 'white', 
-        padding: '0.5rem 0',
-        fontSize: '0.875rem'
+        padding: '0.6rem 0',
+        fontSize: '0.85rem'
       }}>
-        <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <div style={{ display: 'flex', gap: '1.5rem' }}>
-            <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <Mail size={16} /> hijratinternational@gmail.com
-            </span>
-            <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <Phone size={16} /> 0092-322-4902024
-            </span>
+        <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.5rem' }}>
+          <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
+            <a href="mailto:hijratinternational@gmail.com" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'rgba(255,255,255,0.9)', textDecoration: 'none' }}>
+              <Mail size={15} color="var(--secondary)" />
+              hijratinternational@gmail.com
+            </a>
+            <a href="tel:+923224902024" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'rgba(255,255,255,0.9)', textDecoration: 'none' }}>
+              <Phone size={15} color="var(--secondary)" />
+              +92 322 4902024
+            </a>
           </div>
+          <a 
+            href="https://wa.me/923224902024?text=Hello! I need travel assistance." 
+            target="_blank" 
+            rel="noreferrer"
+            style={{ 
+              display: 'flex', alignItems: 'center', gap: '0.5rem',
+              background: '#25D366', color: 'white', padding: '0.3rem 1rem',
+              borderRadius: '2rem', fontWeight: '700', fontSize: '0.8rem',
+              textDecoration: 'none', boxShadow: '0 2px 8px rgba(37,211,102,0.4)'
+            }}
+          >
+            💬 WhatsApp Us
+          </a>
         </div>
       </div>
       
