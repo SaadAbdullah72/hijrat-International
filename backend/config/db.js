@@ -8,9 +8,10 @@ const connectDB = async () => {
         });
         console.log(`MongoDB Connected: ${conn.connection.host}`);
     } catch (error) {
-        console.error(`MongoDB connection failed: ${error.message}`);
-        console.log('Running in mock mode...');
-        // We'll handle mock data in the controllers
+        console.error('--- MONGODB CONNECTION ERROR ---');
+        console.error(`Message: ${error.message}`);
+        console.error('Please ensure your .env URI is correct and your IP is whitelisted in Atlas.');
+        console.error('--------------------------------');
     }
 };
 
