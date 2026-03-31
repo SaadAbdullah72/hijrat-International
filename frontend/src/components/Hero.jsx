@@ -64,6 +64,15 @@ const Hero = () => {
           <QuickInquiry />
         </div>
       </div>
+      <style dangerouslySetInnerHTML={{ __html: `
+        @media (max-width: 991px) {
+            .hero { padding-top: 100px !important; text-align: center; }
+            .hero-content { margin-bottom: 3rem; }
+            .hero-content h1 { font-size: 3rem !important; }
+            .hero-content p { margin-left: auto; margin-right: auto; }
+            .hero-content div { justify-content: center; }
+        }
+      `}} />
     </section>
   );
 };

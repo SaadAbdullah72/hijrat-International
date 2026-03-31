@@ -65,31 +65,44 @@ const Navbar = () => {
             <Link to="/contact" className="nav-link">Contact Us</Link>
           </div>
 
-          <div className="mobile-toggle" onClick={() => setIsOpen(!isOpen)} style={{ display: 'none', cursor: 'pointer' }}>
-            {isOpen ? <X /> : <Menu />}
+          <div className="mobile-toggle" onClick={() => setIsOpen(!isOpen)} style={{ display: 'none', cursor: 'pointer', color: 'var(--primary)' }}>
+            {isOpen ? <X size={32} /> : <Menu size={32} />}
           </div>
         </div>
 
-        {/* Mobile Menu logic would go here */}
+        {/* Mobile Menu Overlay */}
+        <div style={{
+            display: isOpen ? 'flex' : 'none',
+            flexDirection: 'column',
+            position: 'absolute',
+            top: '90px',
+            left: 0,
+            width: '100%',
+            backgroundColor: 'white',
+            padding: '2rem',
+            gap: '1.5rem',
+            boxShadow: '0 10px 20px rgba(0,0,0,0.1)',
+            zIndex: 999,
+            borderTop: '1px solid #f1f5f9'
+        }}>
+            <Link to="/" onClick={() => setIsOpen(false)} style={mobileLinkStyle}>Home</Link>
+            <a href="/#about" onClick={() => setIsOpen(false)} style={mobileLinkStyle}>About Us</a>
+            <a href="/#services" onClick={() => setIsOpen(false)} style={mobileLinkStyle}>Services</a>
+            <a href="/#packages" onClick={() => setIsOpen(false)} style={mobileLinkStyle}>Packages</a>
+            <Link to="/contact" onClick={() => setIsOpen(false)} style={mobileLinkStyle}>Contact Us</Link>
+        </div>
+
         <style dangerouslySetInnerHTML={{ __html: `
           .nav-link { 
-            font-weight: 600; 
+            font-weight: 700; 
             color: var(--text-dark); 
             position: relative;
+            text-transform: uppercase;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
           }
           .nav-link:hover { color: var(--primary); }
-          .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background-color: var(--secondary);
-            transition: width 0.3s;
-          }
-          .nav-link:hover::after { width: 100%; }
-          @media (max-width: 768px) {
+          @media (max-width: 991px) {
             .desktop-menu { display: none !important; }
             .mobile-toggle { display: block !important; }
           }
@@ -97,6 +110,15 @@ const Navbar = () => {
       </nav>
     </>
   );
+};
+
+const mobileLinkStyle = {
+    fontSize: '1.25rem',
+    fontWeight: '700',
+    color: 'var(--text-dark)',
+    borderBottom: '1px solid #f1f5f9',
+    paddingBottom: '1rem',
+    textTransform: 'uppercase'
 };
 
 export default Navbar;
