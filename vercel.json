@@ -17,13 +17,19 @@
       "dest": "/api/contacts.js"
     },
     {
-      "src": "/(.*)",
-      "dest": "/frontend/$1",
-      "check": true
+      "src": "/assets/(.*)",
+      "dest": "/frontend/dist/assets/$1"
+    },
+    {
+      "src": "/favicon.png",
+      "dest": "/frontend/dist/favicon.png"
+    },
+    {
+      "handle": "filesystem"
     },
     {
       "src": "/(.*)",
-      "dest": "/frontend/index.html"
+      "dest": "/frontend/dist/index.html"
     }
   ]
 }
