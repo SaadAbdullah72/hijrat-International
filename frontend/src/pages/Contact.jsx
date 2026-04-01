@@ -106,17 +106,21 @@ const Contact = () => {
             </div>
 
             <button type="submit" disabled={status.loading} style={{
-                backgroundColor: '#c4a433', // Gold from screenshot
+                backgroundColor: 'var(--primary)',
                 color: 'white',
                 border: 'none',
                 padding: '1rem',
-                borderRadius: '0.5rem',
-                fontWeight: 'bold',
+                borderRadius: '0.75rem',
+                fontWeight: '800',
                 fontSize: '1.1rem',
                 cursor: 'pointer',
-                marginTop: '1rem'
+                marginTop: '1rem',
+                textTransform: 'uppercase',
+                letterSpacing: '1px',
+                boxShadow: '0 4px 15px rgba(30, 64, 175, 0.25)',
+                transition: 'all 0.3s ease'
             }}>
-                {status.loading ? 'Submitting...' : 'Submit Inquiry'}
+                {status.loading ? 'Submitting...' : 'Send Inquiry Now'}
             </button>
           </form>
         </div>
