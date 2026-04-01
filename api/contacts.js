@@ -57,6 +57,43 @@ module.exports = async function handler(req, res) {
                 name, email, phone, service, message, destination, travelDate, travelers
             });
 
+            // Send Email Notification
+            try {
+                const nodemailer = require('nodemailer');
+                const transporter = nodemailer.createTransport({
+                    service: 'gmail',
+                    auth: {
+                        user: 'saad489254@gmail.com',
+                        pass: 'aqojsijkvdnwxpdw' // Removed spaces
+                    }
+                });
+
+                const mailOptions = {
+                    from: '"Hijrat Web Alerts" <saad489254@gmail.com>',
+                    to: 'hijratinternational@gmail.com',
+                    subject: `New Inquiry: ${service || 'General'} from ${name}`,
+                    html: `
+                        <div style="font-family: sans-serif; padding: 20px; color: #333;">
+                            <h2 style="color: #1e40af;">New Customer Inquiry</h2>
+                            <p><strong>Name:</strong> ${name}</p>
+                            <p><strong>Email:</strong> ${email}</p>
+                            <p><strong>Phone:</strong> ${phone}</p>
+                            <p><strong>Service:</strong> ${service || 'N/A'}</p>
+                            <p><strong>Destination:</strong> ${destination || 'N/A'}</p>
+                            <p><strong>Travel Date:</strong> ${travelDate || 'N/A'}</p>
+                            <p><strong>Travelers:</strong> ${travelers || 'N/A'}</p>
+                            ${message ? `<p><strong>Message:</strong> ${message}</p>` : ''}
+                        </div>
+                    `
+                };
+
+                await transporter.sendMail(mailOptions);
+                console.log('Email sent successfully');
+            } catch (mailError) {
+                console.error('Email Error:', mailError.message);
+                // We still return 201 because the database save was successful
+            }
+
             return res.status(201).json({ success: true, data: contact });
         }
 
