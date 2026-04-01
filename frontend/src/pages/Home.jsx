@@ -13,8 +13,8 @@ const Home = () => {
       <Services />
       <AboutSection />
       <FeaturedPackages />
-      <OfficeLocation />
       <PromoSlider />
+      <OfficeLocation />
       {/* Add more sections like Testimonials or Brand Logos here */}
     </main>
   );
