@@ -48,9 +48,9 @@ const Admin = () => {
             }
         } catch (error) {
             console.error('DEBUG: Login Error:', error.response?.data || error.message);
-            const detail = error.response?.status === 401 ? 'Invalid Password' : 'Server Connection Error';
-            setMsg(`❌ Secure Gateway Failure: ${detail}`);
-            setTimeout(() => setMsg(''), 4000);
+            const serverMsg = error.response?.data?.debug || error.response?.data?.message || error.message;
+            setMsg(`❌ Server Error: ${serverMsg}`);
+            setTimeout(() => setMsg(''), 6000);
         }
     };
 

@@ -1,16 +1,5 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "frontend/package.json",
-      "use": "@vercel/static-build",
-      "config": { "distDir": "dist" }
-    },
-    {
-      "src": "api/*.js",
-      "use": "@vercel/node"
-    }
-  ],
   "headers": [
     {
       "source": "/(.*)",
@@ -19,15 +8,12 @@
         { "key": "X-Frame-Options", "value": "DENY" },
         { "key": "X-XSS-Protection", "value": "1; mode=block" },
         { "key": "Strict-Transport-Security", "value": "max-age=63072000; includeSubDomains; preload" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" }
+        { "key": "Referrer-Policy", "value": "strict-origin" }
       ]
     }
   ],
   "routes": [
-    { "src": "/api/contacts", "dest": "/api/contacts.js" },
-    { "src": "/api/promos", "dest": "/api/promos.js" },
-    { "src": "/api/admin", "dest": "/api/admin.js" },
+    { "src": "/api/(.*)", "dest": "/api/$1.js", "check": true },
     { "src": "/(.*)", "dest": "/frontend/$1", "check": true },
     { "src": "/(.*)", "dest": "/frontend/index.html" }
   ]

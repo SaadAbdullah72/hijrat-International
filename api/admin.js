@@ -1,6 +1,5 @@
 const { connectDB, logAudit, ZLogin, signToken, setHeaders } = require('./_lib');
 
-
 module.exports = async function handler(req, res) {
     setHeaders(res);
     if (req.method === 'OPTIONS') return res.status(200).end();
@@ -9,7 +8,7 @@ module.exports = async function handler(req, res) {
         await connectDB();
         if (req.method === 'POST') {
             const validation = ZLogin.safeParse(req.body);
-            if (!validation.success) return res.status(400).json({ message: 'Invalid paylod structure' });
+            if (!validation.success) return res.status(400).json({ message: 'Invalid payload structure' });
 
             const { password } = validation.data;
             const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'hijrat786';
