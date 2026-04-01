@@ -68,12 +68,8 @@ const Navbar = () => {
           alignItems: 'center',
           height: '90px'
         }}>
-          <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-            <img src={logo} alt="Hijrat Logo" style={{ height: '70px', width: 'auto' }} />
-            <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1 }}>
-                <span style={{ fontSize: '1.25rem', fontWeight: '800', color: 'var(--primary)' }}>HIJRAT INTERNATIONAL</span>
-                <span style={{ fontSize: '0.7rem', fontWeight: '600', color: 'var(--secondary)' }}>WORK & TRUST TOGETHER</span>
-            </div>
+          <Link to="/" style={{ display: 'flex', alignItems: 'center' }}>
+            <img src={logo} alt="Hijrat Logo" style={{ height: '75px', width: 'auto', objectFit: 'contain' }} />
           </Link>
 
           <div className="desktop-menu" style={{ display: 'flex', gap: '2rem' }}>
