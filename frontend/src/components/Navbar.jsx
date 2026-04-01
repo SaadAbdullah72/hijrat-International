@@ -68,8 +68,8 @@ const Navbar = () => {
           alignItems: 'center',
           height: '90px'
         }}>
-          <Link to="/" style={{ display: 'flex', alignItems: 'center' }}>
-            <img src={logo} alt="Hijrat Logo" style={{ height: '75px', width: 'auto', objectFit: 'contain' }} />
+          <Link to="/" style={{ display: 'flex', alignItems: 'center', height: '70px', overflow: 'hidden' }}>
+            <img src={logo} alt="Hijrat Logo" style={{ height: '80px', width: 'auto', objectFit: 'contain', marginBottom: '-10px' }} />
           </Link>
 
           <div className="desktop-menu" style={{ display: 'flex', gap: '2rem' }}>

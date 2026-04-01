@@ -7,7 +7,7 @@ const Hero = () => {
       minHeight: '100vh',
       display: 'flex',
       alignItems: 'center',
-      background: 'linear-gradient(rgba(2, 6, 23, 0.7), rgba(30, 64, 175, 0.4)), url("https://images.unsplash.com/photo-1498307833015-e7b400441eb8?auto=format&fit=crop&q=100&w=2070")',
+      background: 'linear-gradient(rgba(30, 64, 175, 0.8), rgba(30, 64, 175, 0.4)), url("https://images.unsplash.com/photo-1498307833015-e7b400441eb8?auto=format&fit=crop&q=100&w=2070")',
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       paddingTop: '120px',
