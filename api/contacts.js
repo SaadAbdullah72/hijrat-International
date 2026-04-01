@@ -111,6 +111,13 @@ module.exports = async function handler(req, res) {
         }
 
         if (req.method === 'GET') {
+            // Security check for viewing contacts
+            const password = req.headers['x-admin-password'];
+            const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'hijrat786';
+            if (password !== ADMIN_PASSWORD) {
+                return res.status(401).json({ success: false, message: 'Unauthorized' });
+            }
+
             const contacts = await Contact.find().sort({ createdAt: -1 });
             return res.status(200).json({ success: true, data: contacts });
         }

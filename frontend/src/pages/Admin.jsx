@@ -8,13 +8,16 @@ const Admin = () => {
     const [imageData, setImageData] = useState(''); // Stores base64
     const [fileName, setFileName] = useState('');
     const [password, setPassword] = useState('');
-    const [isAuth, setIsAuth] = useState(false);
+    const [isAuth, setIsAuth] = useState(localStorage.getItem('adminToken') === 'authenticated');
     const [msg, setMsg] = useState('');
     const [isUploading, setIsUploading] = useState(false);
 
     useEffect(() => {
         if (isAuth) fetchPromos();
     }, [isAuth]);
+
+    const getAdminPassword = () => localStorage.getItem('adminPass') || '';
+
 
     const getApiUrl = () => {
         return window.location.hostname === 'localhost'
@@ -32,14 +35,29 @@ const Admin = () => {
         }
     };
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
-        if (password === 'hijrat786') {
-            setIsAuth(true);
-        } else {
-            setMsg('❌ Incorrect password');
+        try {
+            const loginUrl = window.location.hostname === 'localhost'
+                ? 'http://localhost:5000/api/admin'
+                : '/api/admin';
+            
+            const res = await axios.post(loginUrl, { password });
+            if (res.data.success) {
+                setIsAuth(true);
+                localStorage.setItem('adminToken', 'authenticated');
+                localStorage.setItem('adminPass', password);
+            }
+        } catch (error) {
+            setMsg('❌ Incorrect password or server error');
             setTimeout(() => setMsg(''), 3000);
         }
+    };
+
+    const handleLogout = () => {
+        setIsAuth(false);
+        localStorage.removeItem('adminToken');
+        localStorage.removeItem('adminPass');
     };
 
     const handleFileChange = (e) => {
@@ -85,7 +103,9 @@ const Admin = () => {
 
         setIsUploading(true);
         try {
-            await axios.post(getApiUrl(), { imageData, title });
+            await axios.post(getApiUrl(), { imageData, title }, {
+                headers: { 'x-admin-password': getAdminPassword() }
+            });
             setImageData('');
             setFileName('');
             setTitle('');
@@ -104,7 +124,9 @@ const Admin = () => {
     const deletePromo = async (id) => {
         if (!window.confirm('Are you sure you want to delete this poster?')) return;
         try {
-            await axios.delete(`${getApiUrl()}?id=${id}`);
+            await axios.delete(`${getApiUrl()}?id=${id}`, {
+                headers: { 'x-admin-password': getAdminPassword() }
+            });
             setMsg('🗑️ Poster deleted');
             setTimeout(() => setMsg(''), 3000);
             fetchPromos();
@@ -193,7 +215,7 @@ const Admin = () => {
                             {promos.length} / 10 posters active
                         </p>
                     </div>
-                    <button onClick={() => setIsAuth(false)} style={{
+                    <button onClick={handleLogout} style={{
                         display: 'flex', alignItems: 'center', gap: '0.4rem',
                         padding: '0.6rem 1.2rem', background: '#fee2e2',
                         color: '#dc2626', border: 'none', borderRadius: '0.5rem',

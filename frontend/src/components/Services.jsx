@@ -7,7 +7,7 @@ const services = [
     description: "As an IATA-accredited agency, we provide direct access to the world’s leading airlines. We offer real-time bookings, corporate travel management, and 24/7 support.",
     features: ["Real-time flight bookings", "Corporate travel management", "24/7 ticketing support"],
     icon: <Ticket size={32} color="#fff" />,
-    image: "https://images.unsplash.com/photo-1436491865332-7a61a109c0f3?auto=format&fit=crop&q=80&w=2070",
+    image: "https://images.unsplash.com/photo-1544016768-982d1554f0b9?auto=format&fit=crop&q=80&w=2070",
     gradient: 'linear-gradient(135deg, #1e3a8a, #3b82f6)'
   },
   {
@@ -39,7 +39,7 @@ const services = [
     description: "Embassy-approved insurance protecting you against medical emergencies, cancellations, and loss of baggage.",
     features: ["Medical emergencies", "Trip cancellations", "Loss of baggage/passport"],
     icon: <ShieldCheck size={32} color="#fff" />,
-    image: "https://images.unsplash.com/photo-1454165833767-027ffea9e77b?auto=format&fit=crop&q=80&w=2070",
+    image: "https://images.unsplash.com/photo-1506484381205-f7945653044b?auto=format&fit=crop&q=80&w=2070",
     gradient: 'linear-gradient(135deg, #3b82f6, #1e3a8a)'
   },
   {

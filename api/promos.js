@@ -38,6 +38,15 @@ module.exports = async function handler(req, res) {
     try {
         await connectDB();
 
+        // Security middleware for sensitive methods
+        if (req.method === 'POST' || req.method === 'DELETE') {
+            const password = req.headers['x-admin-password'];
+            const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'hijrat786';
+            if (password !== ADMIN_PASSWORD) {
+                return res.status(401).json({ message: 'Unauthorized' });
+            }
+        }
+
         if (req.method === 'GET') {
             const promos = await Promo.find({ active: true }).sort({ createdAt: -1 });
             return res.status(200).json(promos);
