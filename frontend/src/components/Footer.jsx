@@ -84,7 +84,7 @@ const Footer = () => {
           color: 'rgba(255,255,255,0.5)'
         }}>
           <div>© 2024 Hijrat International Travel & Tours. All Rights Reserved.</div>
-          <div>Developed by <span style={{ color: 'var(--secondary)', fontWeight: 'bold' }}>Saad</span></div>
+          <div>Developed by <span style={{ color: 'var(--secondary)', fontWeight: 'bold' }}>Saad Abdullah</span></div>
         </div>
       </div>
       <style dangerouslySetInnerHTML={{ __html: `
