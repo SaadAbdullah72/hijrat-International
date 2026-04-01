@@ -109,16 +109,14 @@ const PromoSlider = () => {
                         }}>Stay updated with our latest travel deals and promotional packages</p>
                     </div>
 
-                    {/* Sleek App-Style Card Slider */}
+                    {/* Sleek Minimalist Post Slider */}
                     <div className="promo-card-wrapper" style={{
                         position: 'relative',
                         width: '100%',
-                        maxWidth: '520px', // Perfect for square/vertical mobile-like cards
+                        maxWidth: '550px',
                         margin: '0 auto',
                         borderRadius: '2rem',
-                        overflow: 'hidden',
-                        boxShadow: '0 30px 60px -15px rgba(30, 64, 175, 0.25)',
-                        background: '#fff',
+                        background: 'transparent',
                         transform: 'scale(1)',
                         transition: 'transform 0.3s ease'
                     }}>
@@ -137,32 +135,29 @@ const PromoSlider = () => {
                                     flexDirection: 'column',
                                     justifyContent: 'center',
                                     alignItems: 'center',
-                                    background: '#fff'
+                                    background: 'transparent',
+                                    padding: '10px' // Provides space for the drop shadow
                                 }}>
-                                    {/* App Card Image - Perfect fit no white spaces */}
-                                    <img
-                                        src={promo.imageData || promo.imageUrl}
-                                        alt={promo.title}
-                                        style={{
-                                            position: 'relative',
-                                            width: '100%',
-                                            height: 'auto', // Wraps tightly around the poster's exact aspect ratio
-                                            maxHeight: '650px',
-                                            objectFit: 'contain',
-                                            display: 'block',
-                                            borderTopLeftRadius: '2rem',
-                                            borderTopRightRadius: '2rem'
-                                        }}
-                                    />
-                                    {/* Sleek Bottom Description Bar (App-like) */}
+                                    {/* App Card Image - Formal and clean with NO white extra space */}
                                     <div style={{
-                                        width: '100%', padding: '1.2rem 1.5rem 2.5rem',
-                                        background: '#fff', textAlign: 'center',
-                                        borderBottomLeftRadius: '2rem',
-                                        borderBottomRightRadius: '2rem'
+                                        position: 'relative',
+                                        width: '100%',
+                                        borderRadius: '1.5rem',
+                                        overflow: 'hidden',
+                                        boxShadow: '0 20px 40px rgba(30, 64, 175, 0.25)',
+                                        background: 'transparent'
                                     }}>
-                                        <h4 style={{ color: 'var(--primary)', margin: 0, fontSize: '1.2rem', fontFamily: "'Outfit', sans-serif" }}>{promo.title || 'Latest Offer'}</h4>
-                                        <p style={{ color: 'var(--text-light)', margin: '0.4rem 0 0', fontSize: '0.9rem' }}>Contact us today to book this exclusive deal.</p>
+                                        <img
+                                            src={promo.imageData || promo.imageUrl}
+                                            alt={promo.title}
+                                            style={{
+                                                width: '100%',
+                                                height: 'auto',
+                                                maxHeight: '700px',
+                                                objectFit: 'contain',
+                                                display: 'block'
+                                            }}
+                                        />
                                     </div>
                                 </div>
                             ))}
@@ -239,7 +234,6 @@ const PromoSlider = () => {
                     transform: translateY(-50%) scale(1.1) !important;
                 }
                 .promo-card-wrapper:hover {
-                    boxShadow: '0 35px 70px -15px rgba(30, 64, 175, 0.3) !important';
                     transform: translateY(-5px) !important;
                 }
                 @media (max-width: 768px) {
