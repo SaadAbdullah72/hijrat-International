@@ -98,12 +98,16 @@ module.exports = async function handler(req, res) {
                 };
 
                 await transporter.sendMail(mailOptions);
-                console.log('Notification Email Sent to hijratinternational@gmail.com');
+                return res.status(201).json({ success: true, message: 'Email sent successfully!', data: contact });
             } catch (mailError) {
                 console.error('Nodemailer Error Details:', mailError);
+                return res.status(201).json({ 
+                    success: true, 
+                    emailError: mailError.message, 
+                    data: contact, 
+                    debug: 'Email failed but database saved' 
+                });
             }
-
-            return res.status(201).json({ success: true, data: contact });
         }
 
         if (req.method === 'GET') {
