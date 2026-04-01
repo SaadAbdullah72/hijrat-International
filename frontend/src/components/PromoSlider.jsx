@@ -109,73 +109,93 @@ const PromoSlider = () => {
                         }}>Stay updated with our latest travel deals and promotional packages</p>
                     </div>
 
-                    {/* Slider */}
-                    <div style={{
+                    {/* Sleek App-Style Card Slider */}
+                    <div className="promo-card-wrapper" style={{
                         position: 'relative',
                         width: '100%',
-                        maxWidth: '950px',
+                        maxWidth: '520px', // Perfect for square/vertical mobile-like cards
                         margin: '0 auto',
-                        borderRadius: '1.2rem',
+                        borderRadius: '2rem',
                         overflow: 'hidden',
-                        boxShadow: '0 20px 50px rgba(30, 64, 175, 0.15)',
-                        border: '3px solid rgba(30, 64, 175, 0.1)',
-                        background: '#fff'
+                        boxShadow: '0 30px 60px -15px rgba(30, 64, 175, 0.25)',
+                        background: '#fff',
+                        transform: 'scale(1)',
+                        transition: 'transform 0.3s ease'
                     }}>
                         {/* Slides */}
                         <div style={{
                             display: 'flex',
                             transform: `translateX(-${currentIndex * 100}%)`,
-                            transition: 'transform 0.7s cubic-bezier(0.4, 0, 0.2, 1)'
+                            transition: 'transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)',
+                            alignItems: 'center'
                         }}>
                             {promos.map((promo, idx) => (
                                 <div key={idx} style={{
                                     minWidth: '100%',
                                     position: 'relative',
-                                    background: '#fff',
                                     display: 'flex',
+                                    flexDirection: 'column',
                                     justifyContent: 'center',
-                                    alignItems: 'center'
+                                    alignItems: 'center',
+                                    background: '#fff'
                                 }}>
+                                    {/* App Card Image - Perfect fit no white spaces */}
                                     <img
                                         src={promo.imageData || promo.imageUrl}
                                         alt={promo.title}
                                         style={{
+                                            position: 'relative',
                                             width: '100%',
-                                            height: '500px',
+                                            height: 'auto', // Wraps tightly around the poster's exact aspect ratio
+                                            maxHeight: '650px',
                                             objectFit: 'contain',
-                                            display: 'block'
+                                            display: 'block',
+                                            borderTopLeftRadius: '2rem',
+                                            borderTopRightRadius: '2rem'
                                         }}
                                     />
+                                    {/* Sleek Bottom Description Bar (App-like) */}
+                                    <div style={{
+                                        width: '100%', padding: '1.2rem 1.5rem 2.5rem',
+                                        background: '#fff', textAlign: 'center',
+                                        borderBottomLeftRadius: '2rem',
+                                        borderBottomRightRadius: '2rem'
+                                    }}>
+                                        <h4 style={{ color: 'var(--primary)', margin: 0, fontSize: '1.2rem', fontFamily: "'Outfit', sans-serif" }}>{promo.title || 'Latest Offer'}</h4>
+                                        <p style={{ color: 'var(--text-light)', margin: '0.4rem 0 0', fontSize: '0.9rem' }}>Contact us today to book this exclusive deal.</p>
+                                    </div>
                                 </div>
                             ))}
                         </div>
 
                         {/* Left Arrow */}
                         <button onClick={prevSlide} aria-label="Previous slide" style={{
-                            position: 'absolute', left: '12px', top: '50%',
+                            position: 'absolute', left: '-20px', top: '45%',
                             transform: 'translateY(-50%)',
-                            backgroundColor: 'var(--primary)',
-                            border: 'none', padding: '0.7rem',
+                            backgroundColor: '#fff',
+                            border: '1px solid #e2e8f0', padding: '0.8rem',
                             borderRadius: '50%', cursor: 'pointer', zIndex: 10,
                             display: 'flex', alignItems: 'center', justifyContent: 'center',
-                            boxShadow: '0 4px 12px rgba(30, 64, 175, 0.35)',
-                            transition: 'transform 0.2s, background 0.2s'
-                        }}>
-                            <ChevronLeft size={22} color="#fff" />
+                            boxShadow: '0 10px 25px rgba(30, 64, 175, 0.15)',
+                            transition: 'all 0.3s ease',
+                            color: 'var(--primary)'
+                        }} className="promo-nav-btn">
+                            <ChevronLeft size={24} />
                         </button>
 
                         {/* Right Arrow */}
                         <button onClick={nextSlide} aria-label="Next slide" style={{
-                            position: 'absolute', right: '12px', top: '50%',
+                            position: 'absolute', right: '-20px', top: '45%',
                             transform: 'translateY(-50%)',
-                            backgroundColor: 'var(--primary)',
-                            border: 'none', padding: '0.7rem',
+                            backgroundColor: '#fff',
+                            border: '1px solid #e2e8f0', padding: '0.8rem',
                             borderRadius: '50%', cursor: 'pointer', zIndex: 10,
                             display: 'flex', alignItems: 'center', justifyContent: 'center',
-                            boxShadow: '0 4px 12px rgba(30, 64, 175, 0.35)',
-                            transition: 'transform 0.2s, background 0.2s'
-                        }}>
-                            <ChevronRight size={22} color="#fff" />
+                            boxShadow: '0 10px 25px rgba(30, 64, 175, 0.15)',
+                            transition: 'all 0.3s ease',
+                            color: 'var(--primary)'
+                        }} className="promo-nav-btn">
+                            <ChevronRight size={24} />
                         </button>
 
                         {/* Dots */}
@@ -213,17 +233,25 @@ const PromoSlider = () => {
             </section>
 
             <style dangerouslySetInnerHTML={{ __html: `
-                .promo-section button:hover {
+                .promo-nav-btn:hover {
+                    background-color: var(--primary) !important;
+                    color: #fff !important;
                     transform: translateY(-50%) scale(1.1) !important;
-                    background-color: var(--primary-hover) !important;
+                }
+                .promo-card-wrapper:hover {
+                    boxShadow: '0 35px 70px -15px rgba(30, 64, 175, 0.3) !important';
+                    transform: translateY(-5px) !important;
                 }
                 @media (max-width: 768px) {
                     .promo-section .container { padding: 0 1rem !important; }
-                    .promo-section img { height: 280px !important; }
                     .promo-section h2 { font-size: 1.8rem !important; }
-                }
-                @media (max-width: 480px) {
-                    .promo-section img { height: 220px !important; }
+                    .promo-nav-btn {
+                       left: 10px !important;
+                    }
+                    .promo-nav-btn:last-of-type {
+                       left: auto !important;
+                       right: 10px !important;
+                    }
                 }
             `}} />
         </>
