@@ -7,7 +7,7 @@ const Hero = () => {
       minHeight: '100vh',
       display: 'flex',
       alignItems: 'center',
-      background: 'linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3)), url("https://images.unsplash.com/photo-1498307833015-e7b400441eb8?auto=format&fit=crop&q=100&w=2070")',
+      background: 'linear-gradient(rgba(2, 6, 23, 0.7), rgba(30, 64, 175, 0.4)), url("https://images.unsplash.com/photo-1498307833015-e7b400441eb8?auto=format&fit=crop&q=100&w=2070")',
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       paddingTop: '120px',
@@ -23,7 +23,7 @@ const Hero = () => {
       }}>
         <div className="hero-content" style={{ zIndex: 10 }}>
           <span style={{ 
-            background: 'var(--secondary)', 
+            background: 'rgba(255, 255, 255, 0.1)', 
             color: 'white', 
             padding: '0.6rem 1.4rem', 
             borderRadius: '2rem', 
@@ -31,18 +31,20 @@ const Hero = () => {
             fontWeight: '900',
             textTransform: 'uppercase',
             letterSpacing: '3px',
-            boxShadow: '0 8px 16px rgba(0,0,0,0.2)'
-          }}>Since 2010 • Hijrat International</span>
+            backdropFilter: 'blur(5px)',
+            border: '1px solid rgba(255,255,255,0.2)',
+            boxShadow: '0 8px 16px rgba(0,0,0,0.1)'
+          }}>Since 2013 • Hijrat International</span>
           <h1 style={{ 
             fontSize: 'max(3.5rem, 5.5vw)', 
             fontWeight: '900', 
             lineHeight: '1.05', 
             margin: '2rem 0',
-            textShadow: '2px 4px 12px rgba(0,0,0,0.5)',
+            textShadow: '2px 4px 12px rgba(0,0,0,0.4)',
             color: '#fff'
           }}>
             Experience <br />
-            Legacy Of <span style={{ color: 'var(--secondary)' }}>Trust</span>
+            Legacy Of <span style={{ color: 'var(--accent)' }}>Trust</span>
           </h1>
           <p style={{ 
             fontSize: 'max(1.1rem, 1.3vw)', 
@@ -50,13 +52,13 @@ const Hero = () => {
             lineHeight: '1.7',
             color: 'rgba(255,255,255,0.95)',
             marginBottom: '3rem',
-            textShadow: '1px 1px 4px rgba(0,0,0,0.3)'
+            textShadow: '1px 1px 4px rgba(0,0,0,0.2)'
           }}>
             Explore the world with Asia's most trusted travel agency. Specializing in sacred journeys, global visas, and premium tour packages tailored for your dream travel.
           </p>
           <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
-            <a href="#packages" className="btn btn-secondary" style={{ padding: '1.2rem 2.5rem', borderRadius: '1rem', fontWeight: '900', fontSize: '1.1rem' }}>Premium Packages</a>
-            <a href="#services" className="btn btn-glass" style={{ padding: '1.2rem 2.5rem', borderRadius: '1rem', fontWeight: '900', color: '#fff', border: '2px solid rgba(255,255,255,0.5)' }}>Our Expertise</a>
+            <a href="#packages" className="btn btn-primary" style={{ padding: '1.2rem 2.5rem', borderRadius: '1rem', fontWeight: '900', fontSize: '1.1rem' }}>Premium Packages</a>
+            <a href="#services" className="btn btn-glass" style={{ padding: '1.2rem 2.5rem', borderRadius: '1rem', fontWeight: '900', color: '#fff', border: '2px solid rgba(255,255,255,0.5)', background: 'transparent' }}>Our Expertise</a>
           </div>
         </div>
 

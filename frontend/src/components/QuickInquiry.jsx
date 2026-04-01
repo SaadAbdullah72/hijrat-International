@@ -104,18 +104,21 @@ const QuickInquiry = () => {
         </div>
 
         <button type="submit" disabled={status.loading} style={{
-            backgroundColor: '#c4a433', // Gold
+            backgroundColor: 'var(--primary)',
             color: 'white',
             border: 'none',
-            padding: '0.85rem',
-            borderRadius: '0.5rem',
-            fontWeight: 'bold',
+            padding: '1rem',
+            borderRadius: '0.75rem',
+            fontWeight: '800',
             fontSize: '1rem',
             cursor: 'pointer',
             marginTop: '0.5rem',
-            boxShadow: '0 4px 12px rgba(196, 164, 51, 0.3)'
+            textTransform: 'uppercase',
+            letterSpacing: '1px',
+            boxShadow: '0 4px 12px rgba(30, 64, 175, 0.25)',
+            transition: 'all 0.3s ease'
         }}>
-            {status.loading ? 'Submitting...' : 'Submit Inquiry'}
+            {status.loading ? 'Submitting...' : 'Send Inquiry Now'}
         </button>
       </form>
     </div>

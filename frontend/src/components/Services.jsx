@@ -14,21 +14,21 @@ const services = [
     description: "Secure your global travel with our reliable visa documentation and consultation services.",
     icon: <Plane size={32} color="#fff" />,
     image: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&q=80&w=2070",
-    gradient: 'linear-gradient(135deg, #111827, #374151)'
+    gradient: 'linear-gradient(135deg, #0f172a, #1e40af)'
   },
   {
     title: "Study Abroad",
     description: "Your gateway to international education. We guide you through admissions and student visa processing.",
     icon: <GraduationCap size={32} color="#fff" />,
     image: "https://images.pexels.com/photos/1462630/pexels-photo-1462630.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    gradient: 'linear-gradient(135deg, #7c2d12, #ea580c)'
+    gradient: 'linear-gradient(135deg, #1e40af, #60a5fa)'
   },
   {
     title: "Rent a Car",
     description: "Providing Worldwide transportation and premium rent-a-car services, specializing in Mecca & Madina transfers.",
     icon: <Map size={32} color="#fff" />,
     image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&q=80&w=2070",
-    gradient: 'linear-gradient(135deg, #064e3b, #10b981)'
+    gradient: 'linear-gradient(135deg, #1e3a8a, #1d4ed8)'
   }
 ];
 

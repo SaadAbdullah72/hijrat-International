@@ -3,6 +3,7 @@ import Hero from '../components/Hero';
 import Services from '../components/Services';
 import FeaturedPackages from '../components/FeaturedPackages';
 import AboutSection from '../components/AboutSection';
+import OfficeLocation from '../components/OfficeLocation';
 
 const Home = () => {
   return (
@@ -11,6 +12,7 @@ const Home = () => {
       <Services />
       <AboutSection />
       <FeaturedPackages />
+      <OfficeLocation />
       {/* Add more sections like Testimonials or Brand Logos here */}
     </main>
   );

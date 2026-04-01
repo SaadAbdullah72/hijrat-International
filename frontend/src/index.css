@@ -1,14 +1,14 @@
 :root {
-  --primary: #1e3a8a; /* Deep Blue */
-  --primary-hover: #172554;
-  --secondary: #d4af37; /* Royal Gold */
-  --accent: #facc15;
-  --text-dark: #1f2937;
-  --text-light: #6b7280;
+  --primary: #1e40af; /* Deep Royal Blue */
+  --primary-hover: #1e3a8a;
+  --secondary: #3b82f6; /* Modern Blue */
+  --accent: #60a5fa; /* Light Blue */
+  --text-dark: #0f172a; /* Slate 900 */
+  --text-light: #475569; /* Slate 600 */
   --white: #ffffff;
-  --bg-light: #f9fafb;
-  --glass: rgba(255, 255, 255, 0.8);
-  --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --bg-light: #f8fafc; /* Slate 50 */
+  --glass: rgba(255, 255, 255, 0.9);
+  --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 }
 
