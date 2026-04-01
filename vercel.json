@@ -9,12 +9,20 @@
     {
       "src": "api/contacts.js",
       "use": "@vercel/node"
+    },
+    {
+      "src": "api/promos.js",
+      "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/api/contacts",
       "dest": "/api/contacts.js"
+    },
+    {
+      "src": "/api/promos",
+      "dest": "/api/promos.js"
     },
     {
       "src": "/(.*)",

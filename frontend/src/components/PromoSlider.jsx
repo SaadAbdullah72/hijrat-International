@@ -14,7 +14,6 @@ const PromoSlider = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [loading, setLoading] = useState(true);
 
-    // These are YOUR actual promotional images - used as default
     const localPromos = [
         { id: 1, imageUrl: promo1, title: 'Hijrat International Travel & Tours' },
         { id: 2, imageUrl: promo2, title: 'Umrah & Hajj Packages' },
@@ -33,11 +32,9 @@ const PromoSlider = () => {
                 if (Array.isArray(res.data) && res.data.length > 0) {
                     setPromos(res.data);
                 } else {
-                    // No DB promos? Use local images
                     setPromos(localPromos);
                 }
             } catch (err) {
-                // API error? Use local images
                 setPromos(localPromos);
             } finally {
                 setLoading(false);
@@ -65,155 +62,171 @@ const PromoSlider = () => {
     if (loading || promos.length === 0) return null;
 
     return (
-        <section className="promo-section" style={{
-            padding: '0',
-            background: 'linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%)',
-            overflow: 'hidden'
-        }}>
-            <div className="container" style={{ padding: '4rem 2rem' }}>
-                <div className="section-title" style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
-                    <span style={{
-                        color: '#f59e0b',
-                        fontWeight: '700',
-                        textTransform: 'uppercase',
-                        letterSpacing: '3px',
-                        fontSize: '0.9rem'
-                    }}>✨ Latest Updates</span>
-                    <h2 style={{
-                        fontSize: '2.5rem',
-                        marginTop: '0.5rem',
-                        color: '#ffffff',
-                        fontWeight: '800'
-                    }}>Special Promotions & Offers</h2>
-                    <div style={{
-                        width: '80px',
-                        height: '4px',
-                        background: 'linear-gradient(90deg, #f59e0b, #ef4444)',
-                        margin: '1rem auto 0',
-                        borderRadius: '2px'
-                    }}></div>
-                </div>
+        <>
+            <section className="promo-section" style={{
+                padding: '5rem 0',
+                background: 'linear-gradient(180deg, #f0f4ff 0%, #ffffff 100%)',
+                position: 'relative',
+                overflow: 'hidden'
+            }}>
+                {/* Decorative background elements */}
+                <div style={{
+                    position: 'absolute', top: '-60px', right: '-60px',
+                    width: '200px', height: '200px', borderRadius: '50%',
+                    background: 'rgba(30, 64, 175, 0.05)', zIndex: 0
+                }} />
+                <div style={{
+                    position: 'absolute', bottom: '-40px', left: '-40px',
+                    width: '150px', height: '150px', borderRadius: '50%',
+                    background: 'rgba(59, 130, 246, 0.06)', zIndex: 0
+                }} />
 
-                <div className="slider-container" style={{
-                    position: 'relative',
-                    width: '100%',
-                    maxWidth: '900px',
-                    margin: '0 auto',
-                    borderRadius: '1.5rem',
-                    overflow: 'hidden',
-                    boxShadow: '0 25px 60px rgba(0,0,0,0.4)',
-                    border: '3px solid rgba(255,255,255,0.1)'
-                }}>
+                <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+                    {/* Section Header */}
+                    <div className="section-title" style={{ textAlign: 'center', marginBottom: '3rem' }}>
+                        <span style={{
+                            color: 'var(--secondary)',
+                            fontWeight: '800',
+                            textTransform: 'uppercase',
+                            letterSpacing: '3px',
+                            fontSize: '0.85rem',
+                            display: 'inline-block',
+                            background: 'rgba(30, 64, 175, 0.08)',
+                            padding: '0.4rem 1.2rem',
+                            borderRadius: '2rem'
+                        }}>✈️ Promotions</span>
+                        <h2 style={{
+                            fontSize: '2.5rem',
+                            marginTop: '1rem',
+                            color: 'var(--primary)',
+                            fontWeight: '800'
+                        }}>Special Offers & Updates</h2>
+                        <p style={{
+                            color: 'var(--text-light)',
+                            maxWidth: '550px',
+                            margin: '0.8rem auto 0',
+                            fontSize: '1.05rem'
+                        }}>Stay updated with our latest travel deals and promotional packages</p>
+                    </div>
+
+                    {/* Slider */}
                     <div style={{
-                        display: 'flex',
-                        transform: `translateX(-${currentIndex * 100}%)`,
-                        transition: '0.8s cubic-bezier(0.4, 0, 0.2, 1)'
+                        position: 'relative',
+                        width: '100%',
+                        maxWidth: '950px',
+                        margin: '0 auto',
+                        borderRadius: '1.2rem',
+                        overflow: 'hidden',
+                        boxShadow: '0 20px 50px rgba(30, 64, 175, 0.15)',
+                        border: '3px solid rgba(30, 64, 175, 0.1)',
+                        background: '#fff'
                     }}>
-                        {promos.map((promo, idx) => (
-                            <div key={idx} style={{
-                                minWidth: '100%',
-                                position: 'relative',
-                                backgroundColor: '#1e293b'
-                            }}>
-                                <img
-                                    src={promo.imageUrl}
-                                    alt={promo.title}
+                        {/* Slides */}
+                        <div style={{
+                            display: 'flex',
+                            transform: `translateX(-${currentIndex * 100}%)`,
+                            transition: 'transform 0.7s cubic-bezier(0.4, 0, 0.2, 1)'
+                        }}>
+                            {promos.map((promo, idx) => (
+                                <div key={idx} style={{
+                                    minWidth: '100%',
+                                    position: 'relative',
+                                    background: '#fff',
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    alignItems: 'center'
+                                }}>
+                                    <img
+                                        src={promo.imageUrl}
+                                        alt={promo.title}
+                                        style={{
+                                            width: '100%',
+                                            height: '500px',
+                                            objectFit: 'contain',
+                                            display: 'block'
+                                        }}
+                                    />
+                                </div>
+                            ))}
+                        </div>
+
+                        {/* Left Arrow */}
+                        <button onClick={prevSlide} aria-label="Previous slide" style={{
+                            position: 'absolute', left: '12px', top: '50%',
+                            transform: 'translateY(-50%)',
+                            backgroundColor: 'var(--primary)',
+                            border: 'none', padding: '0.7rem',
+                            borderRadius: '50%', cursor: 'pointer', zIndex: 10,
+                            display: 'flex', alignItems: 'center', justifyContent: 'center',
+                            boxShadow: '0 4px 12px rgba(30, 64, 175, 0.35)',
+                            transition: 'transform 0.2s, background 0.2s'
+                        }}>
+                            <ChevronLeft size={22} color="#fff" />
+                        </button>
+
+                        {/* Right Arrow */}
+                        <button onClick={nextSlide} aria-label="Next slide" style={{
+                            position: 'absolute', right: '12px', top: '50%',
+                            transform: 'translateY(-50%)',
+                            backgroundColor: 'var(--primary)',
+                            border: 'none', padding: '0.7rem',
+                            borderRadius: '50%', cursor: 'pointer', zIndex: 10,
+                            display: 'flex', alignItems: 'center', justifyContent: 'center',
+                            boxShadow: '0 4px 12px rgba(30, 64, 175, 0.35)',
+                            transition: 'transform 0.2s, background 0.2s'
+                        }}>
+                            <ChevronRight size={22} color="#fff" />
+                        </button>
+
+                        {/* Dots */}
+                        <div style={{
+                            position: 'absolute', bottom: '14px', left: '50%',
+                            transform: 'translateX(-50%)', display: 'flex', gap: '8px',
+                            background: 'rgba(255,255,255,0.85)',
+                            padding: '6px 14px', borderRadius: '20px',
+                            backdropFilter: 'blur(6px)',
+                            boxShadow: '0 2px 8px rgba(0,0,0,0.08)'
+                        }}>
+                            {promos.map((_, i) => (
+                                <div
+                                    key={i}
+                                    onClick={() => setCurrentIndex(i)}
                                     style={{
-                                        width: '100%',
-                                        height: 'auto',
-                                        display: 'block',
-                                        maxHeight: '550px',
-                                        objectFit: 'contain',
-                                        margin: '0 auto'
+                                        width: i === currentIndex ? '24px' : '8px',
+                                        height: '8px', borderRadius: '4px',
+                                        backgroundColor: i === currentIndex ? 'var(--primary)' : 'rgba(30,64,175,0.25)',
+                                        cursor: 'pointer', transition: 'all 0.35s ease'
                                     }}
                                 />
-                            </div>
-                        ))}
+                            ))}
+                        </div>
                     </div>
 
-                    {/* Left Arrow */}
-                    <button onClick={prevSlide} style={{
-                        position: 'absolute',
-                        left: '15px',
-                        top: '50%',
-                        transform: 'translateY(-50%)',
-                        backgroundColor: 'rgba(0,0,0,0.5)',
-                        backdropFilter: 'blur(10px)',
-                        border: '2px solid rgba(255,255,255,0.2)',
-                        padding: '0.8rem',
-                        borderRadius: '50%',
-                        cursor: 'pointer',
-                        zIndex: 10,
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        transition: '0.3s'
+                    {/* Counter */}
+                    <p style={{
+                        textAlign: 'center', color: 'var(--text-light)',
+                        marginTop: '1rem', fontSize: '0.85rem', fontWeight: '600'
                     }}>
-                        <ChevronLeft size={24} color="#fff" />
-                    </button>
-
-                    {/* Right Arrow */}
-                    <button onClick={nextSlide} style={{
-                        position: 'absolute',
-                        right: '15px',
-                        top: '50%',
-                        transform: 'translateY(-50%)',
-                        backgroundColor: 'rgba(0,0,0,0.5)',
-                        backdropFilter: 'blur(10px)',
-                        border: '2px solid rgba(255,255,255,0.2)',
-                        padding: '0.8rem',
-                        borderRadius: '50%',
-                        cursor: 'pointer',
-                        zIndex: 10,
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        transition: '0.3s'
-                    }}>
-                        <ChevronRight size={24} color="#fff" />
-                    </button>
-
-                    {/* Dot Indicators */}
-                    <div style={{
-                        position: 'absolute',
-                        bottom: '15px',
-                        left: '50%',
-                        transform: 'translateX(-50%)',
-                        display: 'flex',
-                        gap: '10px',
-                        backgroundColor: 'rgba(0,0,0,0.4)',
-                        padding: '8px 16px',
-                        borderRadius: '20px',
-                        backdropFilter: 'blur(10px)'
-                    }}>
-                        {promos.map((_, i) => (
-                            <div
-                                key={i}
-                                onClick={() => setCurrentIndex(i)}
-                                style={{
-                                    width: i === currentIndex ? '28px' : '10px',
-                                    height: '10px',
-                                    borderRadius: '5px',
-                                    backgroundColor: i === currentIndex ? '#f59e0b' : 'rgba(255,255,255,0.4)',
-                                    cursor: 'pointer',
-                                    transition: '0.4s ease'
-                                }}
-                            />
-                        ))}
-                    </div>
+                        {currentIndex + 1} / {promos.length}
+                    </p>
                 </div>
+            </section>
 
-                {/* Slide counter */}
-                <p style={{
-                    textAlign: 'center',
-                    color: 'rgba(255,255,255,0.5)',
-                    marginTop: '1.2rem',
-                    fontSize: '0.9rem'
-                }}>
-                    {currentIndex + 1} / {promos.length}
-                </p>
-            </div>
-        </section>
+            <style dangerouslySetInnerHTML={{ __html: `
+                .promo-section button:hover {
+                    transform: translateY(-50%) scale(1.1) !important;
+                    background-color: var(--primary-hover) !important;
+                }
+                @media (max-width: 768px) {
+                    .promo-section .container { padding: 0 1rem !important; }
+                    .promo-section img { height: 280px !important; }
+                    .promo-section h2 { font-size: 1.8rem !important; }
+                }
+                @media (max-width: 480px) {
+                    .promo-section img { height: 220px !important; }
+                }
+            `}} />
+        </>
     );
 };
 
