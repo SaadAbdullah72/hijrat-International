@@ -8,7 +8,7 @@ const Admin = () => {
     const [imageData, setImageData] = useState(''); // Stores base64
     const [fileName, setFileName] = useState('');
     const [password, setPassword] = useState('');
-    const [isAuth, setIsAuth] = useState(localStorage.getItem('adminToken') === 'authenticated');
+    const [isAuth, setIsAuth] = useState(!!localStorage.getItem('adminToken'));
     const [msg, setMsg] = useState('');
     const [isUploading, setIsUploading] = useState(false);
 
@@ -16,7 +16,8 @@ const Admin = () => {
         if (isAuth) fetchPromos();
     }, [isAuth]);
 
-    const getAdminPassword = () => localStorage.getItem('adminPass') || '';
+    const getAuthHeader = () => ({ 'x-admin-password': localStorage.getItem('adminPass') || '' });
+
 
 
     const getApiUrl = () => {
@@ -38,26 +39,22 @@ const Admin = () => {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const loginUrl = window.location.hostname === 'localhost'
-                ? 'http://localhost:5000/api/admin'
-                : '/api/admin';
-            
+            const loginUrl = window.location.hostname === 'localhost' ? 'http://localhost:5000/api/admin' : '/api/admin';
             const res = await axios.post(loginUrl, { password });
             if (res.data.success) {
                 setIsAuth(true);
-                localStorage.setItem('adminToken', 'authenticated');
-                localStorage.setItem('adminPass', password);
+                localStorage.setItem('adminToken', res.data.token);
+                localStorage.setItem('adminPass', password); // Fallback for header check logic
             }
         } catch (error) {
-            setMsg('❌ Incorrect password or server error');
-            setTimeout(() => setMsg(''), 3000);
+            setMsg('❌ Invalid Credentials or Secure Gateway Failure');
+            setTimeout(() => setMsg(''), 3500);
         }
     };
 
     const handleLogout = () => {
         setIsAuth(false);
-        localStorage.removeItem('adminToken');
-        localStorage.removeItem('adminPass');
+        localStorage.clear();
     };
 
     const handleFileChange = (e) => {
@@ -103,18 +100,13 @@ const Admin = () => {
 
         setIsUploading(true);
         try {
-            await axios.post(getApiUrl(), { imageData, title }, {
-                headers: { 'x-admin-password': getAdminPassword() }
-            });
-            setImageData('');
-            setFileName('');
-            setTitle('');
-            setMsg('✅ Poster uploaded successfully!');
+            await axios.post(getApiUrl(), { imageData, title }, { headers: getAuthHeader() });
+            setImageData(''); setFileName(''); setTitle('');
+            setMsg('✅ Secure Upload Complete');
             setTimeout(() => setMsg(''), 3000);
             fetchPromos();
         } catch (error) {
-            console.error(error);
-            setMsg('❌ Error uploading poster');
+            setMsg('❌ Security Error: Upload Rejected');
             setTimeout(() => setMsg(''), 3000);
         } finally {
             setIsUploading(false);
@@ -122,16 +114,14 @@ const Admin = () => {
     };
 
     const deletePromo = async (id) => {
-        if (!window.confirm('Are you sure you want to delete this poster?')) return;
+        if (!window.confirm('IRREVERSIBLE: Are you sure you want to delete this resource?')) return;
         try {
-            await axios.delete(`${getApiUrl()}?id=${id}`, {
-                headers: { 'x-admin-password': getAdminPassword() }
-            });
-            setMsg('🗑️ Poster deleted');
+            await axios.delete(`${getApiUrl()}?id=${id}`, { headers: getAuthHeader() });
+            setMsg('🗑️ Resource securely purged');
             setTimeout(() => setMsg(''), 3000);
             fetchPromos();
         } catch (error) {
-            setMsg('❌ Error deleting poster');
+            setMsg('❌ Security Error: Purge Rejected');
             setTimeout(() => setMsg(''), 3000);
         }
     };
