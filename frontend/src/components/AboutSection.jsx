@@ -18,7 +18,7 @@ const AboutSection = () => {
               color: 'white',
               border: 'none'
             }}>
-              <div style={{ fontSize: '2.5rem', fontWeight: 'bold' }}>10+</div>
+              <div style={{ fontSize: '2.5rem', fontWeight: 'bold' }}>13+</div>
               <div style={{ fontSize: '0.875rem' }}>Years of Experience</div>
             </div>
           </div>

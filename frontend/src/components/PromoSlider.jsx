@@ -115,35 +115,59 @@ const PromoSlider = () => {
                         width: '100%',
                         maxWidth: '950px',
                         margin: '0 auto',
-                        borderRadius: '1.2rem',
+                        borderRadius: '1.5rem',
                         overflow: 'hidden',
-                        boxShadow: '0 20px 50px rgba(30, 64, 175, 0.15)',
-                        border: '3px solid rgba(30, 64, 175, 0.1)',
-                        background: '#fff'
+                        boxShadow: '0 25px 50px -12px rgba(30, 64, 175, 0.4)',
+                        background: '#0f172a'
                     }}>
                         {/* Slides */}
                         <div style={{
                             display: 'flex',
                             transform: `translateX(-${currentIndex * 100}%)`,
-                            transition: 'transform 0.7s cubic-bezier(0.4, 0, 0.2, 1)'
+                            transition: 'transform 0.8s cubic-bezier(0.25, 1, 0.5, 1)'
                         }}>
                             {promos.map((promo, idx) => (
                                 <div key={idx} style={{
                                     minWidth: '100%',
                                     position: 'relative',
-                                    background: '#fff',
                                     display: 'flex',
                                     justifyContent: 'center',
-                                    alignItems: 'center'
+                                    alignItems: 'center',
+                                    overflow: 'hidden'
                                 }}>
+                                    {/* Dynamic Blurred Background Backdrop */}
+                                    <div style={{
+                                        position: 'absolute',
+                                        top: 0, left: 0, right: 0, bottom: 0,
+                                        backgroundImage: `url(${promo.imageData || promo.imageUrl})`,
+                                        backgroundSize: 'cover',
+                                        backgroundPosition: 'center',
+                                        filter: 'blur(25px)',
+                                        transform: 'scale(1.15)',
+                                        opacity: 0.8,
+                                        zIndex: 0
+                                    }} />
+
+                                    {/* Glassmorphism Dark Tint Overlay */}
+                                    <div style={{
+                                        position: 'absolute',
+                                        top: 0, left: 0, right: 0, bottom: 0,
+                                        background: 'linear-gradient(135deg, rgba(30,64,175,0.4) 0%, rgba(15,23,42,0.6) 100%)',
+                                        zIndex: 1
+                                    }} />
+
+                                    {/* Sharp Main Image */}
                                     <img
                                         src={promo.imageData || promo.imageUrl}
                                         alt={promo.title}
                                         style={{
+                                            position: 'relative',
+                                            zIndex: 2,
                                             width: '100%',
-                                            height: '500px',
+                                            height: '550px',
                                             objectFit: 'contain',
-                                            display: 'block'
+                                            display: 'block',
+                                            filter: 'drop-shadow(0px 20px 30px rgba(0,0,0,0.4))'
                                         }}
                                     />
                                 </div>
@@ -219,11 +243,11 @@ const PromoSlider = () => {
                 }
                 @media (max-width: 768px) {
                     .promo-section .container { padding: 0 1rem !important; }
-                    .promo-section img { height: 280px !important; }
+                    .promo-section img { height: 350px !important; }
                     .promo-section h2 { font-size: 1.8rem !important; }
                 }
                 @media (max-width: 480px) {
-                    .promo-section img { height: 220px !important; }
+                    .promo-section img { height: 280px !important; }
                 }
             `}} />
         </>

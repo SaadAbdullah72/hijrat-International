@@ -10,11 +10,11 @@ const Home = () => {
   return (
     <main>
       <Hero />
-      <PromoSlider />
       <Services />
       <AboutSection />
       <FeaturedPackages />
       <OfficeLocation />
+      <PromoSlider />
       {/* Add more sections like Testimonials or Brand Logos here */}
     </main>
   );
