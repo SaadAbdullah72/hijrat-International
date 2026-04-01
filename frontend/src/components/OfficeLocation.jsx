@@ -25,20 +25,20 @@ const OfficeLocation = () => {
                             <h3 style={{ color: 'var(--primary)', fontSize: '1.8rem', marginBottom: '1rem' }}>Headquarters</h3>
                             <p style={{ color: 'var(--text-light)', fontSize: '1.1rem', lineHeight: '1.8' }}>
                                 <strong>Hijrat International Travel & Tours</strong><br />
-                                1st Floor, Office No. 12, Gold Mine Plaza,<br />
-                                Ichhra, Ferozepur Road, Lahore, Pakistan.
+                                Office 25-A, AL Behbood Plaza,<br />
+                                Quaid Avenue, Wah Cantt, Pakistan.
                             </p>
                         </div>
                         
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                                <div style={{ width: '40px', height: '40px', backgroundColor: 'var(--bg-light)', borderRadius: '50%', display: 'flex', justifyContent: 'center', alignItems: 'center', color: 'var(--primary)' }}>
+                                <div style={{ width: '40px', height: '40px', backgroundColor: '#eff6ff', borderRadius: '50%', display: 'flex', justifyContent: 'center', alignItems: 'center', color: 'var(--primary)' }}>
                                     📍
                                 </div>
-                                <span style={{ fontWeight: '600' }}>Lahore, Punjab</span>
+                                <span style={{ fontWeight: '600' }}>Wah Cantt, Punjab</span>
                             </div>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                                <div style={{ width: '40px', height: '40px', backgroundColor: 'var(--bg-light)', borderRadius: '50%', display: 'flex', justifyContent: 'center', alignItems: 'center', color: 'var(--primary)' }}>
+                                <div style={{ width: '40px', height: '40px', backgroundColor: '#eff6ff', borderRadius: '50%', display: 'flex', justifyContent: 'center', alignItems: 'center', color: 'var(--primary)' }}>
                                     ⏰
                                 </div>
                                 <span style={{ fontWeight: '600' }}>Mon - Sat: 09:00 AM - 07:00 PM</span>
@@ -48,7 +48,7 @@ const OfficeLocation = () => {
                     
                     <div style={{ borderRadius: '1.5rem', overflow: 'hidden', height: '400px', boxShadow: 'var(--shadow)', position: 'relative' }}>
                         <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3401.3787796796!2d74.3214829!3d31.5137887!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39190562e8412431%3A0xc3434685dd4760a6!2sHijrat%20International%20Travel!5e0!3m2!1sen!2s!4v1711950000000!5m2!1sen!2s" 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3314.15041490212!2d72.7237033!3d33.782574!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38dfa19ba0a6e3ed%3A0xe5a3633e2101dd68!2sAL%20Behbood%20Plaza!5e0!3m2!1sen!2s!4v1711950000000!5m2!1sen!2s" 
                             width="100%" 
                             height="100%" 
                             style={{ border: 0 }} 
@@ -57,27 +57,29 @@ const OfficeLocation = () => {
                             referrerPolicy="no-referrer-when-downgrade"
                             title="Hijrat International Travel Office Location"
                         ></iframe>
-                        <a 
-                            href="https://share.google/kmgRhRpzPsR2qjUfw" 
-                            target="_blank" 
-                            rel="noreferrer"
-                            style={{ 
-                                position: 'absolute', 
-                                bottom: '20px', 
-                                right: '20px', 
-                                background: 'var(--primary)', 
-                                color: 'white', 
-                                padding: '1rem 2rem', 
-                                borderRadius: '1rem', 
-                                fontWeight: 'bold', 
-                                textDecoration: 'none',
-                                boxShadow: '0 10px 20px rgba(0,0,0,0.3)',
-                                zIndex: 10,
-                                fontSize: '0.9rem'
-                            }}
-                        >
-                            📍 GET DIRECTIONS
-                        </a>
+                        <div style={{ position: 'absolute', bottom: '0', left: '0', width: '100%', padding: '20px', background: 'linear-gradient(transparent, rgba(0,0,0,0.4))' }}>
+                            <a 
+                                href="https://share.google/kmgRhRpzPsR2qjUfw" 
+                                target="_blank" 
+                                rel="noreferrer"
+                                style={{ 
+                                    display: 'block',
+                                    textAlign: 'center',
+                                    background: 'var(--primary)', 
+                                    color: 'white', 
+                                    padding: '1.2rem', 
+                                    borderRadius: '1rem', 
+                                    fontWeight: '800', 
+                                    textDecoration: 'none',
+                                    boxShadow: '0 10px 25px rgba(30, 64, 175, 0.4)',
+                                    fontSize: '1.1rem',
+                                    textTransform: 'uppercase',
+                                    letterSpacing: '1px'
+                                }}
+                            >
+                                Open In Google Maps 🗺️
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
