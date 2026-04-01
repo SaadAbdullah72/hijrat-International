@@ -1,3 +1,4 @@
+const nodemailer = require('nodemailer');
 const mongoose = require('mongoose');
 
 const MONGODB_URI = process.env.MONGODB_URI;
@@ -59,39 +60,47 @@ module.exports = async function handler(req, res) {
 
             // Send Email Notification
             try {
-                const nodemailer = require('nodemailer');
                 const transporter = nodemailer.createTransport({
-                    service: 'gmail',
+                    host: 'smtp.gmail.com',
+                    port: 465,
+                    secure: true,
                     auth: {
                         user: 'saad489254@gmail.com',
-                        pass: 'aqojsijkvdnwxpdw' // Removed spaces
+                        pass: 'aqojsijkvdnwxpdw'
+                    },
+                    tls: {
+                        rejectUnauthorized: false
                     }
                 });
 
                 const mailOptions = {
                     from: '"Hijrat Web Alerts" <saad489254@gmail.com>',
                     to: 'hijratinternational@gmail.com',
-                    subject: `New Inquiry: ${service || 'General'} from ${name}`,
+                    subject: `New Inquiry: ${service || 'General'} | ${name}`,
                     html: `
-                        <div style="font-family: sans-serif; padding: 20px; color: #333;">
-                            <h2 style="color: #1e40af;">New Customer Inquiry</h2>
-                            <p><strong>Name:</strong> ${name}</p>
-                            <p><strong>Email:</strong> ${email}</p>
-                            <p><strong>Phone:</strong> ${phone}</p>
-                            <p><strong>Service:</strong> ${service || 'N/A'}</p>
-                            <p><strong>Destination:</strong> ${destination || 'N/A'}</p>
-                            <p><strong>Travel Date:</strong> ${travelDate || 'N/A'}</p>
-                            <p><strong>Travelers:</strong> ${travelers || 'N/A'}</p>
-                            ${message ? `<p><strong>Message:</strong> ${message}</p>` : ''}
+                        <div style="font-family: Arial, sans-serif; padding: 30px; border: 1px solid #e2e8f0; border-radius: 15px; max-width: 600px; color: #1e293b;">
+                            <h2 style="color: #1e40af; border-bottom: 2px solid #f1f5f9; padding-bottom: 15px;">New Inquiry Received</h2>
+                            <div style="margin-top: 20px;">
+                                <p style="margin: 10px 0;"><strong>Customer Name:</strong> ${name}</p>
+                                <p style="margin: 10px 0;"><strong>Phone Number:</strong> ${phone}</p>
+                                <p style="margin: 10px 0;"><strong>Email:</strong> ${email}</p>
+                                <p style="margin: 10px 0;"><strong>Service Requested:</strong> <span style="background: #eff6ff; color: #1e40af; padding: 2px 8px; border-radius: 4px;">${service || 'N/A'}</span></p>
+                                <p style="margin: 10px 0;"><strong>Destination:</strong> ${destination || 'N/A'}</p>
+                                <p style="margin: 10px 0;"><strong>Travel Date:</strong> ${travelDate || 'N/A'}</p>
+                                <p style="margin: 10px 0;"><strong>N°. of Travelers:</strong> ${travelers || 'N/A'}</p>
+                                ${message ? `<div style="margin-top: 20px; padding: 15px; background: #f8fafc; border-radius: 8px;"><strong>Message:</strong><br/>${message}</div>` : ''}
+                            </div>
+                            <div style="margin-top: 30px; font-size: 0.8rem; color: #94a3b8; text-align: center;">
+                                This inquiry was submitted via Hijrat International Travels Website.
+                            </div>
                         </div>
                     `
                 };
 
                 await transporter.sendMail(mailOptions);
-                console.log('Email sent successfully');
+                console.log('Notification Email Sent to hijratinternational@gmail.com');
             } catch (mailError) {
-                console.error('Email Error:', mailError.message);
-                // We still return 201 because the database save was successful
+                console.error('Nodemailer Error Details:', mailError);
             }
 
             return res.status(201).json({ success: true, data: contact });
@@ -105,7 +114,7 @@ module.exports = async function handler(req, res) {
         return res.status(405).json({ success: false, message: 'Method not allowed' });
 
     } catch (error) {
-        console.error('API Error:', error.message);
+        console.error('API Handler Error:', error.message);
         return res.status(500).json({ success: false, message: error.message });
     }
 };
