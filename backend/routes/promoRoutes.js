@@ -2,6 +2,9 @@ const express = require('express');
 const router = express.Router();
 const Promo = require('../models/Promo');
 
+// Increase body size limit for base64 images
+router.use(express.json({ limit: '10mb' }));
+
 // GET all active promos
 router.get('/', async (req, res) => {
     try {
@@ -12,13 +15,14 @@ router.get('/', async (req, res) => {
     }
 });
 
-// POST new promo
+// POST new promo (base64 image)
 router.post('/', async (req, res) => {
     try {
-        const newPromo = new Promo({
-            imageUrl: req.body.imageUrl,
-            title: req.body.title
-        });
+        const { imageData, title } = req.body;
+        if (!imageData || !title) {
+            return res.status(400).json({ message: 'Image and title required' });
+        }
+        const newPromo = new Promo({ imageData, title });
         await newPromo.save();
         res.status(201).json(newPromo);
     } catch (error) {

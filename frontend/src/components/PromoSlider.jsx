@@ -137,7 +137,7 @@ const PromoSlider = () => {
                                     alignItems: 'center'
                                 }}>
                                     <img
-                                        src={promo.imageUrl}
+                                        src={promo.imageData || promo.imageUrl}
                                         alt={promo.title}
                                         style={{
                                             width: '100%',

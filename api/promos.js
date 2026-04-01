@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 
 const MONGODB_URI = process.env.MONGODB_URI;
 
-// Promo Schema
+// Promo Schema - stores base64 image data directly
 const PromoSchema = new mongoose.Schema({
-    imageUrl: { type: String, required: true },
+    imageData: { type: String, required: true },  // base64 encoded image
     title: { type: String, required: true },
     active: { type: Boolean, default: true },
     createdAt: { type: Date, default: Date.now }
@@ -17,9 +17,7 @@ try {
     Promo = mongoose.model('Promo', PromoSchema);
 }
 
-// Cache connection for serverless
 let cachedConnection = null;
-
 async function connectDB() {
     if (cachedConnection && mongoose.connection.readyState === 1) {
         return cachedConnection;
@@ -46,15 +44,15 @@ module.exports = async function handler(req, res) {
         }
 
         if (req.method === 'POST') {
-            const { imageUrl, title } = req.body;
-            if (!imageUrl || !title) {
-                return res.status(400).json({ message: 'imageUrl and title are required' });
+            const { imageData, title } = req.body;
+            if (!imageData || !title) {
+                return res.status(400).json({ message: 'Image and title are required' });
             }
             const count = await Promo.countDocuments({ active: true });
             if (count >= 10) {
                 return res.status(400).json({ message: 'Maximum 10 posters allowed. Delete some first.' });
             }
-            const newPromo = await Promo.create({ imageUrl, title });
+            const newPromo = await Promo.create({ imageData, title });
             return res.status(201).json(newPromo);
         }
 

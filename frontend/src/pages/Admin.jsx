@@ -3,11 +3,13 @@ import axios from 'axios';
 
 const Admin = () => {
     const [promos, setPromos] = useState([]);
-    const [url, setUrl] = useState('');
     const [title, setTitle] = useState('');
+    const [imageData, setImageData] = useState(''); // Stores base64
+    const [fileName, setFileName] = useState('');
     const [password, setPassword] = useState('');
     const [isAuth, setIsAuth] = useState(false);
     const [msg, setMsg] = useState('');
+    const [isUploading, setIsUploading] = useState(false);
 
     useEffect(() => {
         if (isAuth) fetchPromos();
@@ -39,6 +41,34 @@ const Admin = () => {
         }
     };
 
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        
+        // Allowed formats
+        const validTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/webp'];
+        if (!validTypes.includes(file.type)) {
+            setMsg('❌ Only JPG, PNG, and WebP images are allowed.');
+            setTimeout(() => setMsg(''), 3000);
+            return;
+        }
+
+        // File size limit (approx 5MB)
+        if (file.size > 5 * 1024 * 1024) {
+             setMsg('❌ File size too large. Maximum 5MB allowed.');
+             setTimeout(() => setMsg(''), 3000);
+             return;
+        }
+
+        setFileName(file.name);
+
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onloadend = () => {
+            setImageData(reader.result);
+        };
+    };
+
     const addPromo = async (e) => {
         e.preventDefault();
         if (promos.length >= 10) {
@@ -46,16 +76,27 @@ const Admin = () => {
             setTimeout(() => setMsg(''), 3000);
             return;
         }
+        if (!imageData) {
+            setMsg('⚠️ Please select an image first.');
+            setTimeout(() => setMsg(''), 3000);
+            return;
+        }
+
+        setIsUploading(true);
         try {
-            await axios.post(getApiUrl(), { imageUrl: url, title });
-            setUrl('');
+            await axios.post(getApiUrl(), { imageData, title });
+            setImageData('');
+            setFileName('');
             setTitle('');
-            setMsg('✅ Poster added successfully!');
+            setMsg('✅ Poster uploaded successfully!');
             setTimeout(() => setMsg(''), 3000);
             fetchPromos();
         } catch (error) {
-            setMsg('❌ Error adding poster');
+            console.error(error);
+            setMsg('❌ Error uploading poster');
             setTimeout(() => setMsg(''), 3000);
+        } finally {
+            setIsUploading(false);
         }
     };
 
@@ -87,7 +128,7 @@ const Admin = () => {
                     textAlign: 'center'
                 }}>
                     <div style={{ fontSize: '3rem', marginBottom: '0.5rem' }}>🔐</div>
-                    <h2 style={{ color: '#1e40af', marginBottom: '0.3rem', fontSize: '1.6rem' }}>Admin Dashboard</h2>
+                    <h2 style={{ color: '#1e40af', marginBottom: '0.3rem', fontSize: '1.6rem', fontFamily: "'Outfit', sans-serif" }}>Admin Dashboard</h2>
                     <p style={{ color: '#64748b', marginBottom: '2rem', fontSize: '0.9rem' }}>Hijrat International Travel & Tours</p>
                     
                     {msg && <div style={{
@@ -113,9 +154,9 @@ const Admin = () => {
                             background: 'linear-gradient(135deg, #1e40af, #3b82f6)',
                             color: 'white', border: 'none', borderRadius: '0.75rem',
                             fontSize: '1rem', fontWeight: '700', cursor: 'pointer',
-                            transition: '0.3s'
+                            transition: '0.3s', fontFamily: "'Outfit', sans-serif"
                         }}>
-                            Login →
+                            Secure Login →
                         </button>
                     </form>
                 </div>
@@ -128,16 +169,21 @@ const Admin = () => {
         <div style={{
             minHeight: '100vh',
             background: '#f1f5f9',
-            paddingTop: '100px', paddingBottom: '40px'
+            paddingTop: '60px', paddingBottom: '40px',
+            fontFamily: "'Inter', sans-serif"
         }}>
             <div style={{ maxWidth: '900px', margin: '0 auto', padding: '0 1.5rem' }}>
                 {/* Header */}
                 <div style={{
                     display: 'flex', justifyContent: 'space-between',
-                    alignItems: 'center', marginBottom: '2rem', flexWrap: 'wrap', gap: '1rem'
+                    alignItems: 'center', marginBottom: '2rem', flexWrap: 'wrap', gap: '1rem',
+                    background: 'white', padding: '1.5rem', borderRadius: '1rem',
+                    boxShadow: '0 4px 15px rgba(0,0,0,0.04)'
                 }}>
                     <div>
-                        <h1 style={{ color: '#1e40af', fontSize: '1.8rem', margin: 0 }}>📊 Promotion Manager</h1>
+                        <h1 style={{ color: '#1e40af', fontSize: '1.8rem', margin: 0, fontFamily: "'Outfit', sans-serif" }}>
+                            📊 Promotion Manager
+                        </h1>
                         <p style={{ color: '#64748b', margin: '0.3rem 0 0' }}>
                             {promos.length} / 10 posters active
                         </p>
@@ -145,8 +191,8 @@ const Admin = () => {
                     <button onClick={() => setIsAuth(false)} style={{
                         padding: '0.6rem 1.2rem', background: '#fee2e2',
                         color: '#dc2626', border: 'none', borderRadius: '0.5rem',
-                        cursor: 'pointer', fontWeight: '600', fontSize: '0.85rem'
-                    }}>Logout</button>
+                        cursor: 'pointer', fontWeight: '600', fontSize: '0.9rem'
+                    }}>🚪 Logout</button>
                 </div>
 
                 {/* Status Message */}
@@ -164,108 +210,153 @@ const Admin = () => {
                     boxShadow: '0 4px 15px rgba(0,0,0,0.06)',
                     border: '1px solid #e2e8f0'
                 }}>
-                    <h3 style={{ color: '#1e40af', marginBottom: '0.5rem', fontSize: '1.2rem' }}>➕ Add New Poster</h3>
-                    <p style={{ color: '#94a3b8', fontSize: '0.8rem', marginBottom: '1rem' }}>
-                        📌 Paste any image link — Facebook, Imgur, Google Drive, or any direct URL works!
+                    <h3 style={{ color: '#1e40af', marginBottom: '0.5rem', fontSize: '1.3rem', fontFamily: "'Outfit', sans-serif" }}>
+                        ➕ Upload New Poster
+                    </h3>
+                    <p style={{ color: '#94a3b8', fontSize: '0.85rem', marginBottom: '1.5rem' }}>
+                        Upload your promotional poster directly from your device (JPG, PNG). Max 5MB.
                     </p>
-                    <form onSubmit={addPromo} style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
-                        <input
-                            value={title}
-                            onChange={(e) => setTitle(e.target.value)}
-                            placeholder="Poster Title (e.g. Summer Umrah Package)"
-                            required
-                            style={{
-                                padding: '0.8rem 1rem', border: '2px solid #e2e8f0',
-                                borderRadius: '0.6rem', fontSize: '0.95rem', outline: 'none'
-                            }}
-                        />
-                        <input
-                            value={url}
-                            onChange={(e) => setUrl(e.target.value)}
-                            placeholder="Image URL (Facebook, Imgur, or any image link)"
-                            required
-                            style={{
-                                padding: '0.8rem 1rem', border: '2px solid #e2e8f0',
-                                borderRadius: '0.6rem', fontSize: '0.95rem', outline: 'none'
-                            }}
-                        />
-                        {/* Image Preview */}
-                        {url && (
+                    
+                    <form onSubmit={addPromo} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                        <div>
+                            <label style={{ display: 'block', marginBottom: '0.4rem', color: '#1e293b', fontWeight: '600', fontSize: '0.9rem' }}>Poster Title:</label>
+                            <input
+                                value={title}
+                                onChange={(e) => setTitle(e.target.value)}
+                                placeholder="e.g. Summer Umrah Package 2024"
+                                required
+                                style={{
+                                    width: '100%', padding: '0.8rem 1rem', border: '2px solid #e2e8f0',
+                                    borderRadius: '0.6rem', fontSize: '0.95rem', outline: 'none', boxSizing: 'border-box'
+                                }}
+                            />
+                        </div>
+
+                        <div>
+                            <label style={{ display: 'block', marginBottom: '0.4rem', color: '#1e293b', fontWeight: '600', fontSize: '0.9rem' }}>Select Image:</label>
                             <div style={{
-                                border: '2px dashed #e2e8f0', borderRadius: '0.6rem',
-                                padding: '0.5rem', textAlign: 'center', background: '#f8fafc'
+                                border: '2px dashed #93c5fd', borderRadius: '0.6rem', padding: '1.5rem',
+                                background: '#eff6ff', textAlign: 'center', cursor: 'pointer', position: 'relative'
                             }}>
-                                <p style={{ fontSize: '0.75rem', color: '#94a3b8', marginBottom: '0.4rem' }}>Preview:</p>
-                                <img
-                                    src={url}
-                                    alt="Preview"
-                                    onError={(e) => { e.target.style.display = 'none'; }}
+                                <input 
+                                    type="file" 
+                                    accept="image/jpeg, image/png, image/jpg, image/webp"
+                                    onChange={handleFileChange}
                                     style={{
-                                        maxWidth: '100%', maxHeight: '200px',
+                                        position: 'absolute', top: 0, left: 0, width: '100%', height: '100%',
+                                        opacity: 0, cursor: 'pointer'
+                                    }}
+                                />
+                                <span style={{ color: '#1e40af', fontWeight: '600' }}>
+                                    {fileName ? `📁 ${fileName}` : '📤 Click to Browse or Drag Image Here'}
+                                </span>
+                            </div>
+                        </div>
+
+                        {/* Image Preview */}
+                        {imageData && (
+                            <div style={{
+                                border: '2px solid #e2e8f0', borderRadius: '0.6rem',
+                                padding: '0.5rem', textAlign: 'center', background: '#f8fafc',
+                                marginTop: '0.5rem'
+                            }}>
+                                <p style={{ fontSize: '0.8rem', color: '#64748b', marginBottom: '0.5rem', fontWeight: '600' }}>Image Preview</p>
+                                <img
+                                    src={imageData}
+                                    alt="Preview"
+                                    style={{
+                                        maxWidth: '100%', maxHeight: '250px',
                                         objectFit: 'contain', borderRadius: '0.4rem'
                                     }}
                                 />
                             </div>
                         )}
-                        <button type="submit" style={{
-                            padding: '0.8rem',
-                            background: 'linear-gradient(135deg, #1e40af, #3b82f6)',
-                            color: 'white', border: 'none', borderRadius: '0.6rem',
-                            fontSize: '1rem', fontWeight: '700', cursor: 'pointer'
-                        }}>
-                            Add Poster
+
+                        <button 
+                            type="submit" 
+                            disabled={isUploading}
+                            style={{
+                                padding: '1rem', marginTop: '0.5rem',
+                                background: isUploading ? '#94a3b8' : 'linear-gradient(135deg, #1e40af, #3b82f6)',
+                                color: 'white', border: 'none', borderRadius: '0.6rem',
+                                fontSize: '1.05rem', fontWeight: '700', cursor: isUploading ? 'not-allowed' : 'pointer',
+                                transition: '0.3s', fontFamily: "'Outfit', sans-serif"
+                            }}
+                        >
+                            {isUploading ? '⏳ Uploading...' : '🚀 Upload & Publish Poster'}
                         </button>
                     </form>
                 </div>
 
                 {/* Existing Posters Grid */}
-                <h3 style={{ color: '#1e40af', marginBottom: '1rem', fontSize: '1.2rem' }}>
-                    📋 Current Posters ({promos.length})
+                <h3 style={{ color: '#1e40af', marginBottom: '1.2rem', fontSize: '1.4rem', fontFamily: "'Outfit', sans-serif" }}>
+                    📋 Published Posters ({promos.length})
                 </h3>
                 {promos.length === 0 ? (
                     <div style={{
-                        textAlign: 'center', padding: '3rem',
+                        textAlign: 'center', padding: '4rem 2rem',
                         background: 'white', borderRadius: '1rem',
-                        color: '#94a3b8'
+                        color: '#64748b', border: '1px dashed #cbd5e1'
                     }}>
-                        No posters yet. Add your first one above!
+                        <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>📭</div>
+                        <p style={{ fontSize: '1.1rem', fontWeight: '500' }}>No active posters found.</p>
+                        <p style={{ fontSize: '0.9rem' }}>Upload your first poster above to display it on the website.</p>
                     </div>
                 ) : (
                     <div style={{
                         display: 'grid',
                         gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
-                        gap: '1.2rem'
+                        gap: '1.5rem'
                     }}>
-                        {promos.map(p => (
-                            <div key={p._id} style={{
-                                background: 'white', borderRadius: '0.8rem',
+                        {promos.map((p, index) => (
+                            <div key={p._id || index} style={{
+                                background: 'white', borderRadius: '1rem',
                                 overflow: 'hidden',
-                                boxShadow: '0 2px 10px rgba(0,0,0,0.06)',
+                                boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
                                 border: '1px solid #e2e8f0',
-                                transition: 'transform 0.2s'
+                                position: 'relative'
                             }}>
+                                <div style={{
+                                    position: 'absolute', top: '10px', left: '10px',
+                                    background: 'rgba(0,0,0,0.6)', color: 'white',
+                                    padding: '0.2rem 0.6rem', borderRadius: '0.3rem',
+                                    fontSize: '0.75rem', fontWeight: 'bold', backdropFilter: 'blur(4px)'
+                                }}>
+                                    Slide {index + 1}
+                                </div>
                                 <img
-                                    src={p.imageUrl}
+                                    src={p.imageData || p.imageUrl}
                                     alt={p.title}
                                     style={{
-                                        width: '100%', height: '180px',
-                                        objectFit: 'cover', display: 'block'
+                                        width: '100%', height: '220px',
+                                        objectFit: 'cover', display: 'block',
+                                        borderBottom: '1px solid #f1f5f9'
                                     }}
                                 />
-                                <div style={{ padding: '1rem' }}>
+                                <div style={{ padding: '1.2rem' }}>
                                     <p style={{
-                                        fontWeight: '600', color: '#1e293b',
-                                        marginBottom: '0.6rem', fontSize: '0.95rem'
+                                        fontWeight: '700', color: '#1e293b',
+                                        marginBottom: '1rem', fontSize: '1rem',
+                                        lineHeight: '1.3'
                                     }}>{p.title}</p>
                                     <button
                                         onClick={() => deletePromo(p._id)}
                                         style={{
-                                            width: '100%', padding: '0.5rem',
+                                            width: '100%', padding: '0.6rem',
                                             background: '#fef2f2', color: '#dc2626',
-                                            border: '1px solid #fecaca', borderRadius: '0.4rem',
-                                            cursor: 'pointer', fontWeight: '600', fontSize: '0.85rem'
+                                            border: '1px solid #fecaca', borderRadius: '0.5rem',
+                                            cursor: 'pointer', fontWeight: '600', fontSize: '0.9rem',
+                                            transition: '0.2s'
                                         }}
-                                    >🗑️ Delete</button>
+                                        onMouseOver={(e) => {
+                                            e.currentTarget.style.background = '#fee2e2';
+                                        }}
+                                        onMouseOut={(e) => {
+                                            e.currentTarget.style.background = '#fef2f2';
+                                        }}
+                                    >
+                                        🗑️ Delete Poster
+                                    </button>
                                 </div>
                             </div>
                         ))}
