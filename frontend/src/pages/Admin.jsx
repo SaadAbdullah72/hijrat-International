@@ -164,7 +164,10 @@ const Admin = () => {
                     boxShadow: '0 4px 15px rgba(0,0,0,0.06)',
                     border: '1px solid #e2e8f0'
                 }}>
-                    <h3 style={{ color: '#1e40af', marginBottom: '1.2rem', fontSize: '1.2rem' }}>➕ Add New Poster</h3>
+                    <h3 style={{ color: '#1e40af', marginBottom: '0.5rem', fontSize: '1.2rem' }}>➕ Add New Poster</h3>
+                    <p style={{ color: '#94a3b8', fontSize: '0.8rem', marginBottom: '1rem' }}>
+                        📌 Paste any image link — Facebook, Imgur, Google Drive, or any direct URL works!
+                    </p>
                     <form onSubmit={addPromo} style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
                         <input
                             value={title}
@@ -179,13 +182,31 @@ const Admin = () => {
                         <input
                             value={url}
                             onChange={(e) => setUrl(e.target.value)}
-                            placeholder="Image URL (e.g. https://i.imgur.com/abc123.jpg)"
+                            placeholder="Image URL (Facebook, Imgur, or any image link)"
                             required
                             style={{
                                 padding: '0.8rem 1rem', border: '2px solid #e2e8f0',
                                 borderRadius: '0.6rem', fontSize: '0.95rem', outline: 'none'
                             }}
                         />
+                        {/* Image Preview */}
+                        {url && (
+                            <div style={{
+                                border: '2px dashed #e2e8f0', borderRadius: '0.6rem',
+                                padding: '0.5rem', textAlign: 'center', background: '#f8fafc'
+                            }}>
+                                <p style={{ fontSize: '0.75rem', color: '#94a3b8', marginBottom: '0.4rem' }}>Preview:</p>
+                                <img
+                                    src={url}
+                                    alt="Preview"
+                                    onError={(e) => { e.target.style.display = 'none'; }}
+                                    style={{
+                                        maxWidth: '100%', maxHeight: '200px',
+                                        objectFit: 'contain', borderRadius: '0.4rem'
+                                    }}
+                                />
+                            </div>
+                        )}
                         <button type="submit" style={{
                             padding: '0.8rem',
                             background: 'linear-gradient(135deg, #1e40af, #3b82f6)',

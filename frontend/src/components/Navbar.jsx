@@ -72,12 +72,13 @@ const Navbar = () => {
             <img src={logo} alt="Hijrat Logo" style={{ height: '110%', width: '110%', objectFit: 'contain' }} />
           </Link>
 
-          <div className="desktop-menu" style={{ display: 'flex', gap: '2rem' }}>
+          <div className="desktop-menu" style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
             <Link to="/" className="nav-link">Home</Link>
             <a href="/#about" className="nav-link">About Us</a>
             <a href="/#services" className="nav-link">Services</a>
             <a href="/#packages" className="nav-link">Packages</a>
             <Link to="/contact" className="nav-link">Contact Us</Link>
+            <Link to="/admin" className="nav-link" style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', background: 'linear-gradient(135deg, var(--primary), var(--secondary))', color: 'white', padding: '0.45rem 1rem', borderRadius: '0.5rem', fontSize: '0.8rem' }}>🔐 Admin</Link>
           </div>
 
           <div className="mobile-toggle" onClick={() => setIsOpen(!isOpen)} style={{ display: 'none', cursor: 'pointer', color: 'var(--primary)' }}>
@@ -105,6 +106,7 @@ const Navbar = () => {
             <a href="/#services" onClick={() => setIsOpen(false)} style={mobileLinkStyle}>Services</a>
             <a href="/#packages" onClick={() => setIsOpen(false)} style={mobileLinkStyle}>Packages</a>
             <Link to="/contact" onClick={() => setIsOpen(false)} style={mobileLinkStyle}>Contact Us</Link>
+            <Link to="/admin" onClick={() => setIsOpen(false)} style={{ ...mobileLinkStyle, display: 'flex', alignItems: 'center', gap: '0.4rem', color: 'var(--primary)' }}>🔐 Admin Panel</Link>
         </div>
 
         <style dangerouslySetInnerHTML={{ __html: `
