@@ -1,9 +1,12 @@
 {
   "name": "hijrat-international",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "private": true,
+  "workspaces": [
+    "frontend"
+  ],
   "scripts": {
-    "build": "cd frontend && npm install && npm run build"
+    "build": "vite build frontend --outDir ../dist"
   },
   "dependencies": {
     "mongoose": "^8.0.0",
@@ -13,6 +16,16 @@
     "zod": "^3.23.8",
     "cookie-parser": "^1.4.6",
     "xss": "^1.0.15",
-    "helmet": "^7.1.0"
+    "helmet": "^7.1.0",
+    "axios": "1.14.0",
+    "lucide-react": "^1.7.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "react-router-dom": "^7.13.2"
+  },
+  "devDependencies": {
+    "vite": "^8.0.1",
+    "@vitejs/plugin-react": "^6.0.1"
   }
+
 }
