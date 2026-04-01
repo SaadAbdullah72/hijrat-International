@@ -41,10 +41,20 @@ const connectDB = async () => {
     if (cachedConnection && mongoose.connection.readyState === 1) {
         return cachedConnection;
     }
-    if (!MONGODB_URI) throw new Error('MONGODB_URI is not defined');
+    if (!MONGODB_URI) throw new Error('MONGODB_URI is not defined on Vercel');
     
     cachedConnection = await mongoose.connect(MONGODB_URI);
     return cachedConnection;
 };
 
-module.exports = { connectDB, Promo, Contact, AuditLog };
+// Central Audit Logger (Prevents Circular Deps)
+async function logAudit(action, resource, details, req) {
+    try {
+        const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+        await AuditLog.create({ action, resource, details, ip });
+    } catch (err) {
+        console.error('Audit Log Error:', err.message);
+    }
+}
+
+module.exports = { connectDB, Promo, Contact, AuditLog, logAudit };

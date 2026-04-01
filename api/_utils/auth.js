@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken');
-const { AuditLog } = require('./db');
 const xss = require('xss');
 
 const JWT_SECRET = process.env.JWT_SECRET || 'hijrat_jwt_secret_primary_key';

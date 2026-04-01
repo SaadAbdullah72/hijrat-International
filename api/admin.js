@@ -1,5 +1,6 @@
-const { connectDB } = require('./_utils/db');
-const { setSecurityHeaders, logAudit, signToken } = require('./_utils/auth');
+const { connectDB, logAudit } = require('./_utils/db');
+const { setSecurityHeaders, signToken, sanitize } = require('./_utils/auth');
+
 const { LoginSchema } = require('./_utils/schemas');
 
 module.exports = async function handler(req, res) {
