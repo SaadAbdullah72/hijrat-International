@@ -15,7 +15,9 @@ const Footer = () => {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '4rem', marginBottom: '4rem' }}>
           
           <div className="footer-brand">
-            <img src={logo} alt="Hijrat Logo" style={{ height: '80px', marginBottom: '1.5rem', objectFit: 'contain' }} />
+            <div style={{ height: '70px', overflow: 'hidden', marginBottom: '1.5rem' }}>
+              <img src={logo} alt="Hijrat Logo" style={{ height: '80px', width: 'auto', objectFit: 'contain', marginBottom: '-10px' }} />
+            </div>
             <p style={{ color: 'rgba(255,255,255,0.7)', marginBottom: '1.5rem', lineHeight: 1.8 }}>
               Market leader in the field of Travel & Tours, Ticketing, and Umrah services for more than a decade. Our passion is to provide quality and competitive services to our valued clients.
             </p>
