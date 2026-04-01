@@ -65,8 +65,8 @@ module.exports = async function handler(req, res) {
                     port: 465,
                     secure: true,
                     auth: {
-                        user: 'saad489254@gmail.com',
-                        pass: 'aqojsijkvdnwxpdw'
+                        user: process.env.EMAIL_USER,
+                        pass: process.env.EMAIL_PASS
                     },
                     tls: {
                         rejectUnauthorized: false
@@ -74,7 +74,7 @@ module.exports = async function handler(req, res) {
                 });
 
                 const mailOptions = {
-                    from: '"Hijrat Web Alerts" <saad489254@gmail.com>',
+                    from: `"Hijrat Web Alerts" <${process.env.EMAIL_USER}>`,
                     to: 'hijratinternational@gmail.com',
                     subject: `New Inquiry: ${service || 'General'} | ${name}`,
                     html: `

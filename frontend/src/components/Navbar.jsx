@@ -31,7 +31,7 @@ const Navbar = () => {
             </a>
             <a href="tel:+923224902024" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'rgba(255,255,255,0.9)', textDecoration: 'none' }}>
               <Phone size={15} color="var(--secondary)" />
-              +92 322 4902024
+              +92 322 4902024 | +92 51 4902024 | +92 51 4910822
             </a>
           </div>
           <a 
