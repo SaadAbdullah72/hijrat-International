@@ -25,8 +25,8 @@ const OfficeLocation = () => {
                             <h3 style={{ color: 'var(--primary)', fontSize: '1.8rem', marginBottom: '1rem' }}>Headquarters</h3>
                             <p style={{ color: 'var(--text-light)', fontSize: '1.1rem', lineHeight: '1.8' }}>
                                 <strong>Hijrat International Travel & Tours</strong><br />
-                                Office 25-A, AL Behbood Plaza,<br />
-                                Quaid Avenue, Wah Cantt, Pakistan.
+                                Syed Jamal Shah Plaza Opposite Barrier # 2,<br />
+                                G.T Road Wah Cantt - Pakistan.
                             </p>
                         </div>
                         
@@ -48,7 +48,7 @@ const OfficeLocation = () => {
                     
                     <div style={{ borderRadius: '1.5rem', overflow: 'hidden', height: '400px', boxShadow: 'var(--shadow)', position: 'relative' }}>
                         <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3314.15041490212!2d72.7237033!3d33.782574!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38dfa19ba0a6e3ed%3A0xe5a3633e2101dd68!2sAL%20Behbood%20Plaza!5e0!3m2!1sen!2s!4v1711950000000!5m2!1sen!2s" 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3314.15041490212!2d72.7237033!3d33.782574!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38df9646b9a9d701%3A0xe5a3633e2101dd68!2sSyed%20Jamal%20Shah%20Plaza!5e0!3m2!1sen!2s!4v1711950000000!5m2!1sen!2s" 
                             width="100%" 
                             height="100%" 
                             style={{ border: 0 }} 

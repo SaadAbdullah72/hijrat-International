@@ -53,7 +53,7 @@ const Footer = () => {
             <ul style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
               <li style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
                 <MapPin size={20} color="var(--secondary)" />
-                <span style={{ color: 'rgba(255,255,255,0.7)' }}>Office 25-A, AL Behbood Plaza, Quaid Avenue, Wah Cantt, Pakistan.</span>
+                <span style={{ color: 'rgba(255,255,255,0.7)' }}>Syed Jamal Shah Plaza Opposite Barrier # 2 G.T Road Wah Cantt - Pakistan.</span>
               </li>
               <li style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
                 <Phone size={20} color="var(--secondary)" />
