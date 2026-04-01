@@ -17,10 +17,12 @@ app.use(express.json());
 const packageRoutes = require('./routes/packageRoutes');
 const serviceRoutes = require('./routes/serviceRoutes');
 const contactRoutes = require('./routes/contactRoutes');
+const promoRoutes = require('./routes/promoRoutes');
 
 app.use('/api/packages', packageRoutes);
 app.use('/api/services', serviceRoutes);
 app.use('/api/contacts', contactRoutes);
+app.use('/api/promos', promoRoutes);
 
 // Seeding/Health Check
 app.get('/', (req, res) => {

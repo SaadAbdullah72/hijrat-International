@@ -14,8 +14,13 @@ const Admin = () => {
 
     const fetchPromos = async () => {
         try {
-            const res = await axios.get('/api/promos');
-            setPromos(res.data);
+            const apiUrl = window.location.hostname === 'localhost' ? 'http://localhost:5000/api/promos' : '/api/promos';
+            const res = await axios.get(apiUrl);
+            if (Array.isArray(res.data)) {
+                setPromos(res.data);
+            } else {
+                setPromos([]); // Prevent map error
+            }
         } catch (error) {
             console.error(error);
         }
@@ -30,7 +35,8 @@ const Admin = () => {
     const addPromo = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('/api/promos', { imageUrl: url, title });
+            const apiUrl = window.location.hostname === 'localhost' ? 'http://localhost:5000/api/promos' : '/api/promos';
+            await axios.post(apiUrl, { imageUrl: url, title });
             setUrl(''); setTitle('');
             fetchPromos();
         } catch (error) {
@@ -40,7 +46,8 @@ const Admin = () => {
 
     const deletePromo = async (id) => {
         try {
-            await axios.delete(`/api/promos?id=${id}`);
+            const apiUrl = window.location.hostname === 'localhost' ? 'http://localhost:5000/api/promos' : '/api/promos';
+            await axios.delete(`${apiUrl}?id=${id}`);
             fetchPromos();
         } catch (error) {
             console.error(error);

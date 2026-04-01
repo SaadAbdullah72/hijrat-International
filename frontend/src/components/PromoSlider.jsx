@@ -16,8 +16,9 @@ const PromoSlider = () => {
     useEffect(() => {
         const fetchPromos = async () => {
             try {
-                const res = await axios.get('/api/promos');
-                if (res.data && res.data.length > 0) {
+                const apiUrl = window.location.hostname === 'localhost' ? 'http://localhost:5000/api/promos' : '/api/promos';
+                const res = await axios.get(apiUrl);
+                if (Array.isArray(res.data) && res.data.length > 0) {
                     setPromos(res.data);
                 } else {
                     setPromos(fallbackPromos);
