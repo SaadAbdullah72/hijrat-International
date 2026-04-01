@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Phone, Mail, Facebook, Lock } from 'lucide-react';
+import { Menu, X, Phone, Mail, Lock } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import logo from '../assets/logo.png';
 
@@ -34,7 +34,7 @@ const Navbar = () => {
               +92 322 4902024 | +92 51 4902024 | +92 51 4910822
             </a>
             <a href="https://www.facebook.com/hijratinternational.hi" target="_blank" rel="noreferrer" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'rgba(255,255,255,0.9)', textDecoration: 'none', transition: '0.3s' }}>
-              <Facebook size={16} color="var(--secondary)" fill="var(--secondary)" />
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="var(--secondary)" stroke="var(--secondary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
               Facebook
             </a>
           </div>

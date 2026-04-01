@@ -1,5 +1,5 @@
 import React from 'react';
-import { Phone, Mail, MapPin, Globe, Send, Camera, User, Facebook } from 'lucide-react';
+import { Phone, Mail, MapPin, Globe, Send, Camera, User } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import logo from '../assets/logo.png';
 
@@ -22,7 +22,9 @@ const Footer = () => {
               Market leader in the field of Travel & Tours, Ticketing, and Umrah services for more than a decade. Our passion is to provide quality and competitive services to our valued clients.
             </p>
             <div style={{ display: 'flex', gap: '1rem' }}>
-              <a href="https://www.facebook.com/hijratinternational.hi" target="_blank" rel="noreferrer" style={{ background: 'rgba(255,255,255,0.1)', padding: '0.75rem', borderRadius: '50%', cursor: 'pointer', color: 'white' }} className="social-icon"><Facebook size={20} /></a>
+              <a href="https://www.facebook.com/hijratinternational.hi" target="_blank" rel="noreferrer" style={{ background: 'rgba(255,255,255,0.1)', padding: '0.75rem', borderRadius: '50%', cursor: 'pointer', color: 'white' }} className="social-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+              </a>
               <div style={{ background: 'rgba(255,255,255,0.1)', padding: '0.75rem', borderRadius: '50%', cursor: 'pointer' }} className="social-icon"><Globe size={20} /></div>
               <div style={{ background: 'rgba(255,255,255,0.1)', padding: '0.75rem', borderRadius: '50%', cursor: 'pointer' }} className="social-icon"><Send size={20} /></div>
               <div style={{ background: 'rgba(255,255,255,0.1)', padding: '0.75rem', borderRadius: '50%', cursor: 'pointer' }} className="social-icon"><Camera size={20} /></div>
