@@ -23,7 +23,11 @@ const QuickInquiry = () => {
         
         try {
             const apiUrl = window.location.hostname === 'localhost' ? 'http://localhost:5000/api/contacts' : '/api/contacts';
-            await axios.post(apiUrl, formData);
+            const res = await axios.post(apiUrl, formData);
+            console.log('Submission Response:', res.data);
+            if (res.data.emailError) {
+                console.warn('Email skipped:', res.data.emailError);
+            }
             setStatus({ loading: false, msg: 'Inquiry received!', type: 'success' });
             setFormData({ name: '', email: '', phone: '', service: 'Umrah Package', destination: '', travelDate: '', travelers: '1' });
         } catch (error) {
