@@ -24,10 +24,13 @@ const AboutSection = () => {
           </div>
 
           <div className="about-content">
-            <h4 style={{ color: 'var(--secondary)', marginBottom: '1rem', textTransform: 'uppercase', letterSpacing: '2px' }}>Our Story</h4>
+            <h4 style={{ color: 'var(--secondary)', marginBottom: '1rem', textTransform: 'uppercase', letterSpacing: '2px' }}>A Legacy of Excellence in Global Travel</h4>
             <h2 style={{ fontSize: '3rem', lineHeight: 1.2, marginBottom: '2rem' }}>About Hijrat International <span style={{ color: 'var(--secondary)' }}>Travel & Tours</span></h2>
+            <p style={{ color: 'var(--text-light)', fontSize: '1.125rem', marginBottom: '1rem' }}>
+              Since our establishment in 2013, Hijrat International has been a cornerstone of the travel and tourism industry in Pakistan. As a government-approved agency and a proud member of the Chamber of Commerce, we have dedicated over a decade to bridging the gap between local travelers and global destinations.
+            </p>
             <p style={{ color: 'var(--text-light)', fontSize: '1.125rem', marginBottom: '2rem' }}>
-              Established in 2013, Hijrat International was founded with a mission to provide quality and competitive services to our valued clients. Under the leadership of <strong>CEO Yasir Mehmood</strong>, we have grown into a leading travel and tours agency in Pakistan.
+              Our IATA accreditation is more than just a license; it is a seal of quality that ensures our clients receive the highest international standards of service, safety, and reliability. Whether you are planning a complex international itinerary or seeking specialized travel consultancy, our experienced team is committed to delivering seamless, world-class experiences.
             </p>
             
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '2.5rem' }}>

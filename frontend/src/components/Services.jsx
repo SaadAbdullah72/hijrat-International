@@ -1,34 +1,54 @@
 import React, { useState, useEffect } from 'react';
-import { Send, Plane, GraduationCap, Map } from 'lucide-react';
+import { Send, Plane, GraduationCap, Map, ShieldCheck, Users, Ticket, Globe } from 'lucide-react';
 
 const services = [
   {
-    title: "Travel Agency",
-    description: "Expertly organized sacred journeys and professional travel assistance with a decade of trust.",
-    icon: <Send size={32} color="#fff" />,
-    image: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&q=80&w=2070",
+    title: "Air Ticketing",
+    description: "As an IATA-accredited agency, we provide direct access to the world’s leading airlines. We offer real-time bookings, corporate travel management, and 24/7 support.",
+    features: ["Real-time flight bookings", "Corporate travel management", "24/7 ticketing support"],
+    icon: <Ticket size={32} color="#fff" />,
+    image: "https://images.unsplash.com/photo-1436491865332-7a61a109c0f3?auto=format&fit=crop&q=80&w=2070",
     gradient: 'linear-gradient(135deg, #1e3a8a, #3b82f6)'
   },
   {
     title: "Visa Consultancy",
-    description: "Secure your global travel with our reliable visa documentation and consultation services.",
-    icon: <Plane size={32} color="#fff" />,
+    description: "Expert guidance for UK, USA, Europe, and Asia visas. Document verification and up-to-date embassy regulation info.",
+    features: ["Tourist & Business visas", "Document verification", "Embassy regulations info"],
+    icon: <Globe size={32} color="#fff" />,
     image: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&q=80&w=2070",
     gradient: 'linear-gradient(135deg, #0f172a, #1e40af)'
   },
   {
-    title: "Study Abroad",
-    description: "Your gateway to international education. We guide you through admissions and student visa processing.",
-    icon: <GraduationCap size={32} color="#fff" />,
-    image: "https://images.pexels.com/photos/1462630/pexels-photo-1462630.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    title: "Umrah & Hajj",
+    description: "Specialized spiritual journeys with tailored packages prioritizing comfort and proximity to Holy Sites.",
+    features: ["Customized Umrah plans", "Visa processing", "Hotel bookings in KSA"],
+    icon: <Send size={32} color="#fff" />,
+    image: "https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&q=80&w=2070",
     gradient: 'linear-gradient(135deg, #1e40af, #60a5fa)'
   },
   {
-    title: "Rent a Car",
-    description: "Providing Worldwide transportation and premium rent-a-car services, specializing in Mecca & Madina transfers.",
+    title: "Holiday Packages",
+    description: "Explore the world with curated vacation plans. From Northern Pakistan to international hotspots.",
+    features: ["Family & Honeymoon plans", "Group & Corporate tours", "Sightseeing arrangements"],
     icon: <Map size={32} color="#fff" />,
-    image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&q=80&w=2070",
+    image: "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&q=80&w=2070",
     gradient: 'linear-gradient(135deg, #1e3a8a, #1d4ed8)'
+  },
+  {
+    title: "Travel Insurance",
+    description: "Embassy-approved insurance protecting you against medical emergencies, cancellations, and loss of baggage.",
+    features: ["Medical emergencies", "Trip cancellations", "Loss of baggage/passport"],
+    icon: <ShieldCheck size={32} color="#fff" />,
+    image: "https://images.unsplash.com/photo-1454165833767-027ffea9e77b?auto=format&fit=crop&q=80&w=2070",
+    gradient: 'linear-gradient(135deg, #3b82f6, #1e3a8a)'
+  },
+  {
+    title: "Manpower Services",
+    description: "Bridging the gap between skilled Pakistani professionals and international employers with ethical recruitment.",
+    features: ["Ethical recruitment", "Gulf & Global staffing", "Vocational solutions"],
+    icon: <Users size={32} color="#fff" />,
+    image: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&q=80&w=2070",
+    gradient: 'linear-gradient(135deg, #0f172a, #3b82f6)'
   }
 ];
 
@@ -49,9 +69,9 @@ const Services = () => {
     <section id="services" className="services" style={{ backgroundColor: '#fcfcfc', overflow: 'hidden', padding: '100px 0' }}>
       <div className="container">
         <div className="section-title">
-          <span style={{ color: 'var(--secondary)', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '2px' }}>Our Expertise</span>
-          <h2 style={{ fontSize: '3.5rem', marginTop: '10px', color: 'var(--primary)', fontWeight: '900' }}>World Class Services</h2>
-          <p style={{ fontSize: '1.2rem' }}>Delivering excellence in every journey we plan and every visa we process.</p>
+          <span style={{ color: 'var(--secondary)', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '2px' }}>Our Services</span>
+          <h2 style={{ fontSize: '3.5rem', marginTop: '10px', color: 'var(--primary)', fontWeight: '900' }}>Comprehensive Travel Solutions</h2>
+          <p style={{ fontSize: '1.2rem' }}>At Hijrat International, we leverage over a decade of industry expertise and global partnerships to provide excellence in every journey.</p>
         </div>
 
         <div className="slider-container" style={{ position: 'relative', marginTop: '4rem' }}>
@@ -97,8 +117,16 @@ const Services = () => {
                     </div>
                   </div>
                   <div style={{ padding: '4rem 3rem', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                    <h3 style={{ fontSize: 'min(3.5rem, 8vw)', marginBottom: '1.5rem', fontWeight: '900', color: 'var(--primary)', lineHeight: 1.1 }}>{service.title}</h3>
-                    <p style={{ color: 'var(--text-light)', fontSize: '1.25rem', lineHeight: '1.8', marginBottom: '3rem' }}>{service.description}</p>
+                    <h3 style={{ fontSize: 'min(3.5rem, 6vw)', marginBottom: '1.5rem', fontWeight: '900', color: 'var(--primary)', lineHeight: 1.1 }}>{service.title}</h3>
+                    <p style={{ color: 'var(--text-light)', fontSize: '1.1rem', lineHeight: '1.6', marginBottom: '1.5rem' }}>{service.description}</p>
+                    <ul style={{ listStyle: 'none', padding: 0, marginBottom: '2.5rem' }}>
+                      {service.features.map((feature, fIdx) => (
+                        <li key={fIdx} style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', marginBottom: '0.6rem', color: 'var(--text-dark)', fontWeight: '600' }}>
+                          <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--secondary)' }}></div>
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
                     <a href="#contact" className="btn btn-primary" style={{ padding: '1rem 2rem', width: 'fit-content', borderRadius: '1rem' }}>Get Consultation</a>
                   </div>
                 </div>
