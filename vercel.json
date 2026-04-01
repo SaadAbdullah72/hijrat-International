@@ -1,5 +1,16 @@
 {
   "version": 2,
+  "builds": [
+    {
+      "src": "frontend/package.json",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "dist" }
+    },
+    {
+      "src": "api/*.js",
+      "use": "@vercel/node"
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",
@@ -7,14 +18,18 @@
         { "key": "X-Content-Type-Options", "value": "nosniff" },
         { "key": "X-Frame-Options", "value": "DENY" },
         { "key": "X-XSS-Protection", "value": "1; mode=block" },
-        { "key": "Strict-Transport-Security", "value": "max-age=63072000; includeSubDomains; preload" },
+        { "key": "Strict-Transport-Security", "value": "max-age=63072000" },
         { "key": "Referrer-Policy", "value": "strict-origin" }
       ]
     }
   ],
   "routes": [
-    { "src": "/api/(.*)", "dest": "/api/$1.js", "check": true },
-    { "src": "/(.*)", "dest": "/frontend/$1", "check": true },
-    { "src": "/(.*)", "dest": "/frontend/index.html" }
+    { "src": "/api/ping", "dest": "/api/ping.js" },
+    { "src": "/api/admin", "dest": "/api/admin.js" },
+    { "src": "/api/promos", "dest": "/api/promos.js" },
+    { "src": "/api/contacts", "dest": "/api/contacts.js" },
+    { "src": "/assets/(.*)", "dest": "/frontend/dist/assets/$1" },
+    { "src": "/(.*)", "dest": "/frontend/dist/$1", "check": true },
+    { "src": "/(.*)", "dest": "/frontend/dist/index.html" }
   ]
 }
