@@ -38,9 +38,24 @@ module.exports = async function handler(req, res) {
 
             const mailOptions = {
                 from: process.env.EMAIL_USER,
-                to: 'saad489254@gmail.com',
-                subject: `New Travel Inquiry: ${sanitized.name}`,
-                text: `Name: ${sanitized.name}\nEmail: ${sanitized.email}\nPhone: ${sanitized.phone}\nService: ${sanitized.service}\n\nMessage: ${sanitized.message}`
+                to: 'hijratinternational@gmail.com',
+                subject: `🌎 [Hijrat] New Inquiry: ${sanitized.name} (${sanitized.service})`,
+                text: `
+--- TRAVEL INQUIRY DETAILS ---
+Name: ${sanitized.name}
+Email: ${sanitized.email}
+Phone: ${sanitized.phone}
+Service: ${sanitized.service || 'General Inquiry'}
+
+--- SPECIFICS ---
+Destination: ${sanitized.destination || 'N/A'}
+Date of Travel: ${sanitized.travelDate || 'N/A'}
+No. of Travelers: ${sanitized.travelers || 'N/A'}
+
+--- MESSAGE ---
+${sanitized.message || 'No additional details provided.'}
+------------------------------
+`
             };
 
             await transporter.sendMail(mailOptions);
