@@ -29,9 +29,9 @@ const Navbar = () => {
               <Mail size={15} color="var(--secondary)" />
               hijratinternational@gmail.com
             </a>
-            <a href="tel:+923224902024" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'rgba(255,255,255,0.9)', textDecoration: 'none' }}>
+            <a href="tel:+923354902024" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'rgba(255,255,255,0.9)', textDecoration: 'none' }}>
               <Phone size={15} color="var(--secondary)" />
-              +92 322 4902024 | +92 51 4902024 | +92 51 4910822
+              +92 335 4902024 | +92 51 4902024 | +92 51 4910822
             </a>
             <a href="https://www.facebook.com/hijratinternational.hi" target="_blank" rel="noreferrer" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'rgba(255,255,255,0.9)', textDecoration: 'none', transition: '0.3s' }}>
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="var(--secondary)" stroke="var(--secondary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
@@ -40,7 +40,7 @@ const Navbar = () => {
           </div>
 
           <a 
-            href="https://wa.me/923224902024?text=Hello! I need travel assistance." 
+            href="https://wa.me/923354902024?text=Hello! I need travel assistance." 
             target="_blank" 
             rel="noreferrer"
             style={{ 

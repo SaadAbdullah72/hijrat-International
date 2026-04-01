@@ -32,7 +32,7 @@ const packages = [
 const FeaturedPackages = () => {
   const handleWhatsApp = (title) => {
     const message = encodeURIComponent(`Hi, I am interested in the ${title}. Please provide more details.`);
-    window.open(`https://wa.me/923224902024?text=${message}`, '_blank');
+    window.open(`https://wa.me/923354902024?text=${message}`, '_blank');
   };
 
   return (
