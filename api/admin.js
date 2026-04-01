@@ -1,3 +1,4 @@
+const { connectDB } = require('./_utils/db');
 const { setSecurityHeaders, logAudit, signToken } = require('./_utils/auth');
 const { LoginSchema } = require('./_utils/schemas');
 
@@ -7,6 +8,7 @@ module.exports = async function handler(req, res) {
 
     if (req.method === 'POST') {
         try {
+            await connectDB();
             // Brute Force Protection (Production Grade logic - simplified for serverless)
             // Ideally use Redis, but for now we rely on the secure 1s mock delay
             await new Promise(resolve => setTimeout(resolve, 800));
