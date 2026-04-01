@@ -94,7 +94,7 @@ const PromoSlider = () => {
                             background: 'rgba(30, 64, 175, 0.08)',
                             padding: '0.4rem 1.2rem',
                             borderRadius: '2rem'
-                        }}>✈️ Promotions</span>
+                        }}>Promotions</span>
                         <h2 style={{
                             fontSize: '2.5rem',
                             marginTop: '1rem',

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Lock, LayoutDashboard, LogOut, UploadCloud, Image as ImageIcon, Trash2, CheckCircle2, AlertCircle } from 'lucide-react';
 
 const Admin = () => {
     const [promos, setPromos] = useState([]);
@@ -123,12 +123,16 @@ const Admin = () => {
             }}>
                 <div style={{
                     background: 'white', borderRadius: '1.5rem',
-                    padding: '3rem', width: '100%', maxWidth: '400px',
+                    padding: '3.5rem 3rem', width: '100%', maxWidth: '420px',
                     boxShadow: '0 25px 60px rgba(0,0,0,0.3)',
                     textAlign: 'center'
                 }}>
-                    <div style={{ fontSize: '3rem', marginBottom: '0.5rem' }}>🔐</div>
-                    <h2 style={{ color: '#1e40af', marginBottom: '0.3rem', fontSize: '1.6rem', fontFamily: "'Outfit', sans-serif" }}>Admin Dashboard</h2>
+                    <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.5rem' }}>
+                         <div style={{ background: '#eff6ff', padding: '1.2rem', borderRadius: '50%', display: 'inline-flex' }}>
+                             <Lock size={36} color="#1e40af" />
+                         </div>
+                    </div>
+                    <h2 style={{ color: '#1e40af', marginBottom: '0.4rem', fontSize: '1.8rem', fontFamily: "'Outfit', sans-serif" }}>Admin Login</h2>
                     <p style={{ color: '#64748b', marginBottom: '2rem', fontSize: '0.9rem' }}>Hijrat International Travel & Tours</p>
                     
                     {msg && <div style={{
@@ -181,18 +185,19 @@ const Admin = () => {
                     boxShadow: '0 4px 15px rgba(0,0,0,0.04)'
                 }}>
                     <div>
-                        <h1 style={{ color: '#1e40af', fontSize: '1.8rem', margin: 0, fontFamily: "'Outfit', sans-serif" }}>
-                            📊 Promotion Manager
+                        <h1 style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', color: '#1e40af', fontSize: '1.8rem', margin: 0, fontFamily: "'Outfit', sans-serif" }}>
+                            <LayoutDashboard size={28} /> Promotion Manager
                         </h1>
                         <p style={{ color: '#64748b', margin: '0.3rem 0 0' }}>
                             {promos.length} / 10 posters active
                         </p>
                     </div>
                     <button onClick={() => setIsAuth(false)} style={{
+                        display: 'flex', alignItems: 'center', gap: '0.4rem',
                         padding: '0.6rem 1.2rem', background: '#fee2e2',
                         color: '#dc2626', border: 'none', borderRadius: '0.5rem',
                         cursor: 'pointer', fontWeight: '600', fontSize: '0.9rem'
-                    }}>🚪 Logout</button>
+                    }}><LogOut size={16} /> Logout</button>
                 </div>
 
                 {/* Status Message */}
@@ -210,8 +215,8 @@ const Admin = () => {
                     boxShadow: '0 4px 15px rgba(0,0,0,0.06)',
                     border: '1px solid #e2e8f0'
                 }}>
-                    <h3 style={{ color: '#1e40af', marginBottom: '0.5rem', fontSize: '1.3rem', fontFamily: "'Outfit', sans-serif" }}>
-                        ➕ Upload New Poster
+                    <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#1e40af', marginBottom: '0.5rem', fontSize: '1.3rem', fontFamily: "'Outfit', sans-serif" }}>
+                        <UploadCloud size={22} /> Upload New Poster
                     </h3>
                     <p style={{ color: '#94a3b8', fontSize: '0.85rem', marginBottom: '1.5rem' }}>
                         Upload your promotional poster directly from your device (JPG, PNG). Max 5MB.
@@ -289,8 +294,8 @@ const Admin = () => {
                 </div>
 
                 {/* Existing Posters Grid */}
-                <h3 style={{ color: '#1e40af', marginBottom: '1.2rem', fontSize: '1.4rem', fontFamily: "'Outfit', sans-serif" }}>
-                    📋 Published Posters ({promos.length})
+                <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#1e40af', marginBottom: '1.2rem', fontSize: '1.4rem', fontFamily: "'Outfit', sans-serif" }}>
+                    <ImageIcon size={24} /> Published Posters ({promos.length})
                 </h3>
                 {promos.length === 0 ? (
                     <div style={{
@@ -298,7 +303,9 @@ const Admin = () => {
                         background: 'white', borderRadius: '1rem',
                         color: '#64748b', border: '1px dashed #cbd5e1'
                     }}>
-                        <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>📭</div>
+                        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1rem', color: '#cbd5e1' }}>
+                            <ImageIcon size={48} />
+                        </div>
                         <p style={{ fontSize: '1.1rem', fontWeight: '500' }}>No active posters found.</p>
                         <p style={{ fontSize: '0.9rem' }}>Upload your first poster above to display it on the website.</p>
                     </div>
@@ -342,6 +349,7 @@ const Admin = () => {
                                     <button
                                         onClick={() => deletePromo(p._id)}
                                         style={{
+                                            display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem',
                                             width: '100%', padding: '0.6rem',
                                             background: '#fef2f2', color: '#dc2626',
                                             border: '1px solid #fecaca', borderRadius: '0.5rem',
@@ -355,7 +363,7 @@ const Admin = () => {
                                             e.currentTarget.style.background = '#fef2f2';
                                         }}
                                     >
-                                        🗑️ Delete Poster
+                                        <Trash2 size={16} /> Delete Poster
                                     </button>
                                 </div>
                             </div>

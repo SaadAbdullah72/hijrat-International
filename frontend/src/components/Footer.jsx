@@ -1,5 +1,5 @@
 import React from 'react';
-import { Phone, Mail, MapPin, Globe, Send, Camera, User } from 'lucide-react';
+import { Phone, Mail, MapPin, Globe, Send, Camera, User, Facebook } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import logo from '../assets/logo.png';
 
@@ -22,10 +22,11 @@ const Footer = () => {
               Market leader in the field of Travel & Tours, Ticketing, and Umrah services for more than a decade. Our passion is to provide quality and competitive services to our valued clients.
             </p>
             <div style={{ display: 'flex', gap: '1rem' }}>
-              <div style={{ background: 'rgba(255,255,255,0.1)', padding: '0.75rem', borderRadius: '50%', cursor: 'pointer' }}><Globe size={20} /></div>
-              <div style={{ background: 'rgba(255,255,255,0.1)', padding: '0.75rem', borderRadius: '50%', cursor: 'pointer' }}><Send size={20} /></div>
-              <div style={{ background: 'rgba(255,255,255,0.1)', padding: '0.75rem', borderRadius: '50%', cursor: 'pointer' }}><Camera size={20} /></div>
-              <div style={{ background: 'rgba(255,255,255,0.1)', padding: '0.75rem', borderRadius: '50%', cursor: 'pointer' }}><User size={20} /></div>
+              <a href="https://www.facebook.com/hijratinternational.hi" target="_blank" rel="noreferrer" style={{ background: 'rgba(255,255,255,0.1)', padding: '0.75rem', borderRadius: '50%', cursor: 'pointer', color: 'white' }} className="social-icon"><Facebook size={20} /></a>
+              <div style={{ background: 'rgba(255,255,255,0.1)', padding: '0.75rem', borderRadius: '50%', cursor: 'pointer' }} className="social-icon"><Globe size={20} /></div>
+              <div style={{ background: 'rgba(255,255,255,0.1)', padding: '0.75rem', borderRadius: '50%', cursor: 'pointer' }} className="social-icon"><Send size={20} /></div>
+              <div style={{ background: 'rgba(255,255,255,0.1)', padding: '0.75rem', borderRadius: '50%', cursor: 'pointer' }} className="social-icon"><Camera size={20} /></div>
+              <div style={{ background: 'rgba(255,255,255,0.1)', padding: '0.75rem', borderRadius: '50%', cursor: 'pointer' }} className="social-icon"><User size={20} /></div>
             </div>
           </div>
 
@@ -87,6 +88,8 @@ const Footer = () => {
       <style dangerouslySetInnerHTML={{ __html: `
         .footer-links a:hover { color: var(--secondary); padding-left: 5px; }
         .footer-links a { color: rgba(255,255,255,0.7); transition: 0.3s; }
+        .social-icon { transition: all 0.3s ease; }
+        .social-icon:hover { background: var(--secondary) !important; transform: translateY(-3px); }
       `}} />
     </footer>
   );

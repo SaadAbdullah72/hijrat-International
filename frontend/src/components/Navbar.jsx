@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Phone, Mail } from 'lucide-react';
+import { Menu, X, Phone, Mail, Facebook, Lock } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import logo from '../assets/logo.png';
 
@@ -33,7 +33,12 @@ const Navbar = () => {
               <Phone size={15} color="var(--secondary)" />
               +92 322 4902024 | +92 51 4902024 | +92 51 4910822
             </a>
+            <a href="https://www.facebook.com/hijratinternational.hi" target="_blank" rel="noreferrer" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'rgba(255,255,255,0.9)', textDecoration: 'none', transition: '0.3s' }}>
+              <Facebook size={16} color="var(--secondary)" fill="var(--secondary)" />
+              Facebook
+            </a>
           </div>
+
           <a 
             href="https://wa.me/923224902024?text=Hello! I need travel assistance." 
             target="_blank" 
@@ -78,7 +83,9 @@ const Navbar = () => {
             <a href="/#services" className="nav-link">Services</a>
             <a href="/#packages" className="nav-link">Packages</a>
             <Link to="/contact" className="nav-link">Contact Us</Link>
-            <Link to="/admin" className="nav-link" style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', background: 'linear-gradient(135deg, var(--primary), var(--secondary))', color: 'white', padding: '0.45rem 1rem', borderRadius: '0.5rem', fontSize: '0.8rem' }}>🔐 Admin</Link>
+            <Link to="/admin" className="nav-link admin-btn" style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', border: '2px solid var(--primary)', color: 'var(--primary)', padding: '0.4rem 1.2rem', borderRadius: '2rem', fontSize: '0.85rem', transition: 'all 0.3s', fontWeight: '800' }}>
+              <Lock size={14} /> Admin
+            </Link>
           </div>
 
           <div className="mobile-toggle" onClick={() => setIsOpen(!isOpen)} style={{ display: 'none', cursor: 'pointer', color: 'var(--primary)' }}>
@@ -106,7 +113,9 @@ const Navbar = () => {
             <a href="/#services" onClick={() => setIsOpen(false)} style={mobileLinkStyle}>Services</a>
             <a href="/#packages" onClick={() => setIsOpen(false)} style={mobileLinkStyle}>Packages</a>
             <Link to="/contact" onClick={() => setIsOpen(false)} style={mobileLinkStyle}>Contact Us</Link>
-            <Link to="/admin" onClick={() => setIsOpen(false)} style={{ ...mobileLinkStyle, display: 'flex', alignItems: 'center', gap: '0.4rem', color: 'var(--primary)' }}>🔐 Admin Panel</Link>
+            <Link to="/admin" onClick={() => setIsOpen(false)} style={{ ...mobileLinkStyle, display: 'flex', alignItems: 'center', gap: '0.4rem', color: 'var(--primary)', border: 'none' }}>
+              <Lock size={18} /> Admin Portal
+            </Link>
         </div>
 
         <style dangerouslySetInnerHTML={{ __html: `
@@ -119,6 +128,7 @@ const Navbar = () => {
             letter-spacing: 0.5px;
           }
           .nav-link:hover { color: var(--primary); }
+          .admin-btn:hover { background: var(--primary) !important; color: white !important; box-shadow: 0 4px 12px rgba(30,64,175,0.2); }
           @media (max-width: 991px) {
             .desktop-menu { display: none !important; }
             .mobile-toggle { display: block !important; }
