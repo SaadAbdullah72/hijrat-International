@@ -7,7 +7,7 @@ const services = [
     description: "As an IATA-accredited agency, we provide direct access to the world’s leading airlines. We offer real-time bookings, corporate travel management, and 24/7 support.",
     features: ["Real-time flight bookings", "Corporate travel management", "24/7 ticketing support"],
     icon: <Ticket size={32} color="#fff" />,
-    image: "https://images.unsplash.com/photo-1464037862895-3004603415cf?auto=format&fit=crop&q=80&w=2070",
+    image: "https://images.unsplash.com/photo-1530521954074-e64f6810b32d?auto=format&fit=crop&q=80&w=2070",
     gradient: 'linear-gradient(135deg, #1e3a8a, #3b82f6)'
   },
   {
@@ -23,7 +23,7 @@ const services = [
     description: "Specialized spiritual journeys with tailored packages prioritizing comfort and proximity to Holy Sites.",
     features: ["Customized Umrah plans", "Visa processing", "Hotel bookings in KSA"],
     icon: <Send size={32} color="#fff" />,
-    image: "https://images.unsplash.com/photo-1519074002996-a69e7ac46a42?auto=format&fit=crop&q=80&w=2070",
+    image: "https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&q=80&w=2070",
     gradient: 'linear-gradient(135deg, #1e40af, #60a5fa)'
   },
   {
@@ -39,7 +39,7 @@ const services = [
     description: "Embassy-approved insurance protecting you against medical emergencies, cancellations, and loss of baggage.",
     features: ["Medical emergencies", "Trip cancellations", "Loss of baggage/passport"],
     icon: <ShieldCheck size={32} color="#fff" />,
-    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=2070",
+    image: "https://images.unsplash.com/photo-1512428559087-560fa5ceab42?auto=format&fit=crop&q=80&w=2070",
     gradient: 'linear-gradient(135deg, #3b82f6, #1e3a8a)'
   },
   {
