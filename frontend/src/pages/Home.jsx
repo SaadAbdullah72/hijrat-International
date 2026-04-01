@@ -4,11 +4,13 @@ import Services from '../components/Services';
 import FeaturedPackages from '../components/FeaturedPackages';
 import AboutSection from '../components/AboutSection';
 import OfficeLocation from '../components/OfficeLocation';
+import PromoSlider from '../components/PromoSlider';
 
 const Home = () => {
   return (
     <main>
       <Hero />
+      <PromoSlider />
       <Services />
       <AboutSection />
       <FeaturedPackages />
