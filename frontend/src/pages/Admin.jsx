@@ -44,11 +44,13 @@ const Admin = () => {
             if (res.data.success) {
                 setIsAuth(true);
                 localStorage.setItem('adminToken', res.data.token);
-                localStorage.setItem('adminPass', password); // Fallback for header check logic
+                localStorage.setItem('adminPass', password);
             }
         } catch (error) {
-            setMsg('❌ Invalid Credentials or Secure Gateway Failure');
-            setTimeout(() => setMsg(''), 3500);
+            console.error('DEBUG: Login Error:', error.response?.data || error.message);
+            const detail = error.response?.status === 401 ? 'Invalid Password' : 'Server Connection Error';
+            setMsg(`❌ Secure Gateway Failure: ${detail}`);
+            setTimeout(() => setMsg(''), 4000);
         }
     };
 
@@ -117,11 +119,13 @@ const Admin = () => {
         if (!window.confirm('IRREVERSIBLE: Are you sure you want to delete this resource?')) return;
         try {
             await axios.delete(`${getApiUrl()}?id=${id}`, { headers: getAuthHeader() });
+            // Mock delay removed for faster debugging
             setMsg('🗑️ Resource securely purged');
             setTimeout(() => setMsg(''), 3000);
             fetchPromos();
         } catch (error) {
-            setMsg('❌ Security Error: Purge Rejected');
+            console.error('DEBUG: Delete Error:', error.response?.data || error.message);
+            setMsg(`❌ Security Error: ${error.response?.data?.message || 'Purge Rejected'}`);
             setTimeout(() => setMsg(''), 3000);
         }
     };
