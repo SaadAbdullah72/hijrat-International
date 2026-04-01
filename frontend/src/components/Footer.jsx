@@ -57,7 +57,7 @@ const Footer = () => {
               </li>
               <li style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
                 <Phone size={20} color="var(--secondary)" />
-                <span style={{ color: 'rgba(255,255,255,0.7)' }}>0092-51-4902024 / 0092-322-4902024</span>
+                <span style={{ color: 'rgba(255,255,255,0.7)' }}>0092-51-4902024 / 0092-51-4910822 / 0092-322-4902024</span>
               </li>
               <li style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
                 <Mail size={20} color="var(--secondary)" />
